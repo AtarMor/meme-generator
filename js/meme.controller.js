@@ -31,3 +31,10 @@ function onDrawText(text) {
     setLineTxt(text)
     renderMeme()
 }
+
+/// Download ///
+
+function onDownloadMeme(elLink) {
+	const memeContent = gCanvas.toDataURL('image/jpeg')
+	elLink.href = memeContent
+}
