@@ -1,37 +1,41 @@
 'use strict'
 
-let gCanvas
-let gCtx
-
-function renderMeme(x,y) {
+function renderMeme() {
     const meme = getMeme()
-    const memeLine = meme.lines[meme.selectedLineIdx]
+
+    renderImg(meme)
+    renderLine(meme.lines)
+}
+
+function renderImg(meme) {
     const elImg = new Image()
     elImg.src = getImgById(meme.selectedImgId).url
-   
+
     gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
+}
 
-    const memeTxt = memeLine.txt
-    const txtSize = memeLine.size
-    const txtColor = memeLine.color
+function renderLine(memeLines, x = gCanvas.width / 2, y = 0) {
+    memeLines.forEach(line => {
+        y += 50
+        if (y > 400) y = 50
 
-    gCtx.fillStyle = txtColor
-    gCtx.lineWidth = 1
-    // gCtx.strokeStyle = 'white'
+        gCtx.fillStyle = line.color
+        gCtx.strokeStyle = line.color
 
-    gCtx.font = `${txtSize}px Arial`
-    gCtx.textAlign = 'center'
-    gCtx.textBaseline = 'middle'
+        gCtx.font = `${line.size}px Arial`
+        gCtx.textAlign = 'center'
+        // gCtx.textBaseline = 'middle'
 
-    gCtx.fillText(memeTxt, x = gCanvas.width / 2, y=50)
-    gCtx.strokeText(memeTxt, x = gCanvas.width / 2, y=50)
+        gCtx.fillText(line.txt, x, y)
+        gCtx.strokeText(line.txt, x, y)
+    })
 }
 
 /// Download ///
 
 function onDownloadMeme(elLink) {
     const memeContent = gCanvas.toDataURL('image/jpeg')
-	elLink.href = memeContent
+    elLink.href = memeContent
 }
 
 /// Line Operators ///
@@ -53,5 +57,10 @@ function onIncreaseTxtSize() {
 
 function onDecreaseTxtSize() {
     decreaseTxtSize()
+    renderMeme()
+}
+
+function onAddLine() {
+    addLine()
     renderMeme()
 }
