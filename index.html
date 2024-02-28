@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint 2</title>
+
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body onload="onInit()">
+    <header class="main-header flex space-between align-center">
+        <div class="logo">Meme Editor</div>
+        <nav class="main-nav">
+            <ul class="clean-list">
+                <button>Gallery</button>
+                <button>Memes</button>
+                <button>About</button>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="filter flex space-between">
+            <input class="search-img" type="text" name="search" placeholder="Search"></input>
+            <div class="search-words">Funny Animal Happy</div>
+            <button>more</button>
+        </div>
+
+        <section class="image-gallery">
+            
+        </section>
+
+        <section class="meme-editor flex space-evenly">
+            <canvas width="450" height="450"></canvas>
+            <div class="edit-options grid justify-center">
+                <input type="text" name="text-line" required minlength="1" maxlength="20" size="10" 
+                oninput="onDrawText(value)"/>
+                <div class="btn-container">
+                    <button>Add</button>
+                    <button>Add</button>
+                    <button>Add</button>
+                    <button>Add</button>
+                </div>
+                <div>more buttons</div>
+                <div class="emoji">emoji</div>
+                <div class="actions">
+                    <button>Share</button>
+                    <button>Download</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <aside></aside>
+    <footer></footer>
+
+    <script src="js/util.service.js"></script>
+    <script src="js/storage.service.js"></script>
+    <script src="js/meme.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
