@@ -9,6 +9,8 @@ function onInit() {
     const elMemeEditor = document.querySelector('.meme-editor')
     elMemeEditor.classList.add('hidden')
     renderGallery()
+    resizeCanvas()
+	window.addEventListener('resize', resizeCanvas)
     renderMeme()
 }
 
@@ -24,4 +26,12 @@ function goGallery() {
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open')
+}
+
+function resizeCanvas() {
+	const elContainer = document.querySelector('.canvas-container')
+
+	gCanvas.width = elContainer.clientWidth
+	gCanvas.height = elContainer.clientHeight
+    renderMeme()
 }
