@@ -15,7 +15,9 @@ function renderImg(meme) {
 }
 
 function renderLine(memeLines) {
+    let lineIdx = -1
     memeLines.forEach(line => {
+        lineIdx += 1
         gCtx.fillStyle = line.color
         gCtx.strokeStyle = line.color
 
@@ -25,9 +27,13 @@ function renderLine(memeLines) {
 
         gCtx.fillText(line.txt, line.pos.x, line.pos.y)
         gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
+
+        const lineWidth = gCtx.measureText(line.txt).width * 1.1
+        const lineHeight = line.size * 1.4;
+        saveLineDimensions(lineIdx, lineWidth, lineHeight)
     })
-    let selectedLine = getSelectedLine()
-    markSelectedLine(selectedLine, selectedLine.pos.x, selectedLine.pos.y)
+    const selectedLine = getSelectedLine()
+    markSelectedLine(selectedLine)
 }
 
 /// Download ///
@@ -61,6 +67,7 @@ function onDecreaseTxtSize() {
 
 let y = 50
 function onAddLine() {
+    const {lines} = getMeme()
     y += 50
     if (y > 400) y = 50
     const pos = {
@@ -83,7 +90,15 @@ function markSelectedLine(line) {
     gCtx.textAlign = 'center'
 
     var lineHeight = line.size * 1.4;
-    var textWidth = gCtx.measureText(line.txt).width * 1.1
-    gCtx.strokeRect(line.pos.x - textWidth / 2, line.pos.y - lineHeight / 2, textWidth, lineHeight)
+    var lineWidth = gCtx.measureText(line.txt).width * 1.1
+
+    gCtx.strokeRect(line.pos.x - lineWidth / 2, line.pos.y - lineHeight / 2, lineWidth, lineHeight)
     gCtx.closePath()
+}
+
+function onEditTxt(ev) {
+    const clickedLine = isLineClicked(ev)
+    if (!clickedLine) return
+    editLine(clickedLine)
+    renderMeme()
 }

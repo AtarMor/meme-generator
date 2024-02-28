@@ -13,10 +13,16 @@ var gMeme = {
             txt: 'I sometimes eat Falafel',
             size: 20,
             color: 'red',
-            pos: {x: 225, y: 50}
+            pos: {
+                x: 225,
+                y: 50,
+                width: 0,
+                height: 0
+            }
         },
     ]
 }
+
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getMeme() {
@@ -63,6 +69,30 @@ function switchLine() {
 
 function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function saveLineDimensions(lineIdx, width, height) {
+    gMeme.lines[lineIdx].pos.width = width
+    gMeme.lines[lineIdx].pos.height = height
+}
+
+function isLineClicked(ev) {
+    const { offsetX, offsetY } = ev
+    const { pos } = gMeme.lines
+
+    const clickedLine = gMeme.lines.find(line => {
+        const { pos } = line
+        return offsetX >= pos.x - pos.width / 2 &&
+            offsetX <= pos.x - pos.width / 2 + pos.width &&
+            offsetY >= pos.y - pos.height / 2 &&
+            offsetY <= pos.y - pos.height / 2 + pos.height
+    })
+    return clickedLine
+}
+
+function editLine(clickedLine) {
+    const lineIdx = gMeme.lines.findIndex(line => line === clickedLine)
+    gMeme.selectedLineIdx=lineIdx
 }
 
 function _createNewLine(pos) {

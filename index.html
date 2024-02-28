@@ -33,7 +33,7 @@
         </section>
 
         <section class="meme-editor flex space-evenly">
-            <canvas width="450" height="450"></canvas>
+            <canvas width="450" height="450" onclick="onEditTxt(event)"></canvas>
             <div class="edit-options grid justify-center">
                 <input type="text" name="text-line" required minlength="1" maxlength="100" size="10" 
                 oninput="onDrawText(value)"/>
@@ -57,8 +57,8 @@
     <aside></aside>
     <footer></footer>
 
-    <script src="js/util.service.js"></script>
-    <script src="js/storage.service.js"></script>
+    <!-- <script src="js/util.service.js"></script> -->
+    <!-- <script src="js/storage.service.js"></script> -->
     <script src="js/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
