@@ -10,15 +10,19 @@
 </head>
 
 <body onload="onInit()">
+
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
     <header class="main-header flex space-between align-center">
         <div class="logo">Meme Editor</div>
         <nav class="main-nav">
-            <ul class="clean-list">
+            <ul class="main-nav-list clean-list">
                 <button onclick="goGallery()">Gallery</button>
                 <button>Memes</button>
                 <button>About</button>
             </ul>
         </nav>
+        <button class="toggle-menu-btn" onclick="toggleMenu()" type="button">☰</button>
     </header>
 
     <main class="main-content">
@@ -28,12 +32,14 @@
             <button class="more-btn">More</button>
         </div>
 
-        <section class="image-gallery">
+        <section class="image-gallery gallery-layout">
             
         </section>
 
-        <section class="meme-editor flex space-evenly">
-            <canvas width="450" height="450" onclick="onEditTxt(event)"></canvas>
+        <section class="meme-editor meme-editor-layout">
+            <div class="canvas-container">
+                <canvas width="450" height="450" onclick="onEditTxt(event)"></canvas>
+            </div>
             <div class="edit-options grid justify-center">
                 <input type="text" name="text-line" required minlength="1" maxlength="100" size="10" placeholder="Enter Text"
                 oninput="onDrawText(value)"/>

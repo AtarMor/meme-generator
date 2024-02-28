@@ -21,3 +21,7 @@ function goGallery() {
     elFilter.classList.remove('hidden')
     elGallery.classList.remove('hidden')
 }
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
+}
