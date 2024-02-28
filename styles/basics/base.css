@@ -20,9 +20,25 @@ h6 {
 
 img {
     width: 100%;
+    cursor: pointer;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+/* buttons */
+
+button {
+    letter-spacing: 0.03em;
+    padding: 0.5em 1.25em;
+    font-size: 1em;
+    font-family: inherit;
+    cursor: pointer;
+
+    transition:
+        color 0.3s,
+        border-color 0.3s,
+        padding 0.6s;
 }

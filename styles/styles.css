@@ -8,7 +8,9 @@
 
 /* COMPONENTS */
 @import url(components/main-header.css);
+@import url(components/main-content.css);
 @import url(components/filter.css);
+@import url(components/image-gallery.css);
 @import url(components/meme-editor.css);
 
 /* media queries */

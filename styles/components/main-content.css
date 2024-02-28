@@ -1,0 +1,6 @@
+.main-content {
+    margin-inline: 20px;
+    background-color: var(--clrPrimary);
+    border-radius: 20px;
+    padding-inline: 20px;
+}

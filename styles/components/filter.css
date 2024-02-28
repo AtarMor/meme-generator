@@ -1,3 +1,30 @@
 .filter {
+    display: flex;
+    justify-content: stretch;
     padding: 1.5em;
+    gap: 10px;
+}
+
+.filter>* {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    padding-inline: 20px;
+}
+
+.filter .search-img {
+    background-color: var(--clrPrimary1);
+    font-size: 1rem;
+    width: 50%
+}
+
+.filter .search-by-words {
+    background-color: var(--clrPrimary-1);
+    width: 40%
+}
+
+.filter .more-btn {
+    background: var(--clrSecondary);
+    color: inherit;
 }
