@@ -3,8 +3,8 @@
 function renderGallery() {
     const elGallery = document.querySelector('.image-gallery')
     elGallery.innerHTML = `
-    <img onclick="onImgSelect(src)" src="img/1.jpg" alt="">
-            <img onclick="onImgSelect(src)" src="img/2.jpg" alt="">
+    <img id=1 onclick="onImgSelect(id)" src="img/1.jpg" alt="">
+            <img id=2 onclick="onImgSelect(id)" src="img/2.jpg" alt="">
             <img src="img/3.jpg" alt="">
             <img src="img/4.jpg" alt="">
             <img src="img/5.jpg" alt="">
@@ -15,7 +15,7 @@ function renderGallery() {
     ` 
 }
 
-function onImgSelect(imgSrc) {
-    setImg(imgSrc)
+function onImgSelect(imgId) {
+    setImg(+imgId)
     renderMeme() 
 }

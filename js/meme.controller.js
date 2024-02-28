@@ -5,17 +5,21 @@ let gCtx
 
 function renderMeme(x,y) {
     const meme = getMeme()
+    const memeLine = meme.lines[meme.selectedLineIdx]
     const elImg = new Image()
     elImg.src = getImgById(meme.selectedImgId).url
    
     gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
 
-    const memeTxt = gMeme.lines[gMeme.selectedLineIdx].txt
-    gCtx.lineWidth = 1
-    gCtx.strokeStyle = 'white'
-    gCtx.fillStyle = 'black'
+    const memeTxt = memeLine.txt
+    const txtSize = memeLine.size
+    const txtColor = memeLine.color
 
-    gCtx.font = '30px Arial'
+    gCtx.fillStyle = txtColor
+    gCtx.lineWidth = 1
+    // gCtx.strokeStyle = 'white'
+
+    gCtx.font = `${txtSize}px Arial`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 
