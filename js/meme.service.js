@@ -12,7 +12,8 @@ var gMeme = {
         {
             txt: 'I sometimes eat Falafel',
             size: 20,
-            color: 'red'
+            color: 'red',
+            pos: {x: 225, y: 50}
         },
     ]
 }
@@ -49,16 +50,26 @@ function decreaseTxtSize() {
     gMeme.lines[gMeme.selectedLineIdx].size -= 1
 }
 
-function addLine() {
-    const newLine = _createNewLine()
+function addLine(pos) {
+    const newLine = _createNewLine(pos)
     gMeme.lines.push(newLine)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
-function _createNewLine() {
+function switchLine() {
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
+    else gMeme.selectedLineIdx += 1
+}
+
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function _createNewLine(pos) {
     return {
         txt: 'Enter text',
         size: 20,
-        color: 'blue'
+        color: 'blue',
+        pos,
     }
 }

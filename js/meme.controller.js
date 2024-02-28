@@ -14,21 +14,20 @@ function renderImg(meme) {
     gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
 }
 
-function renderLine(memeLines, x = gCanvas.width / 2, y = 0) {
+function renderLine(memeLines) {
     memeLines.forEach(line => {
-        y += 50
-        if (y > 400) y = 50
-
         gCtx.fillStyle = line.color
         gCtx.strokeStyle = line.color
 
         gCtx.font = `${line.size}px Arial`
         gCtx.textAlign = 'center'
-        // gCtx.textBaseline = 'middle'
+        gCtx.textBaseline = 'middle'
 
-        gCtx.fillText(line.txt, x, y)
-        gCtx.strokeText(line.txt, x, y)
+        gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+        gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
     })
+    let selectedLine = getSelectedLine()
+    markSelectedLine(selectedLine, selectedLine.pos.x, selectedLine.pos.y)
 }
 
 /// Download ///
@@ -60,7 +59,31 @@ function onDecreaseTxtSize() {
     renderMeme()
 }
 
+let y = 50
 function onAddLine() {
-    addLine()
+    y += 50
+    if (y > 400) y = 50
+    const pos = {
+        x: gCanvas.width / 2,
+        y,
+    }
+    addLine(pos)
     renderMeme()
+}
+
+function onSwitchLine() {
+    switchLine()
+    renderMeme()
+}
+
+function markSelectedLine(line) {
+    gCtx.beginPath()
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 1
+    gCtx.textAlign = 'center'
+
+    var lineHeight = line.size * 1.4;
+    var textWidth = gCtx.measureText(line.txt).width * 1.1
+    gCtx.strokeRect(line.pos.x - textWidth / 2, line.pos.y - lineHeight / 2, textWidth, lineHeight)
+    gCtx.closePath()
 }
