@@ -37,13 +37,13 @@
             <div class="edit-options grid justify-center">
                 <input type="text" name="text-line" required minlength="1" maxlength="20" size="10" 
                 oninput="onDrawText(value)"/>
+                <div>buttons</div>
                 <div class="btn-container">
-                    <button>Add</button>
-                    <button>Add</button>
-                    <button>Add</button>
+                    <input type="color" name="txt-color" value="#555455" onchange="onSetTxtColor(value)" />
+                    <button onclick="onIncreaseTxtSize()">A+</button>
+                    <button onclick="onDecreaseTxtSize()">A-</button>
                     <button>Add</button>
                 </div>
-                <div>more buttons</div>
                 <div class="emoji">emoji</div>
                 <div class="actions">
                     <button>Share</button>

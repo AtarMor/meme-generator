@@ -27,10 +27,24 @@ function getImgById(imgId) {
     return img
 }
 
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
+}
+
+/// Line Update ///
+ 
 function setLineTxt(text) {
     gMeme.lines[gMeme.selectedLineIdx].txt = text
 }
 
-function setImg(imgId) {
-    gMeme.selectedImgId = imgId
+function setColor(txtColor) {
+    gMeme.lines[gMeme.selectedLineIdx].color = txtColor
+}
+
+function increaseTxtSize() {
+    gMeme.lines[gMeme.selectedLineIdx].size +=1
+}
+
+function decreaseTxtSize() {
+    gMeme.lines[gMeme.selectedLineIdx].size -=1
 }

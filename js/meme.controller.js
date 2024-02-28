@@ -27,14 +27,31 @@ function renderMeme(x,y) {
     gCtx.strokeText(memeTxt, x = gCanvas.width / 2, y=50)
 }
 
+/// Download ///
+
+function onDownloadMeme(elLink) {
+    const memeContent = gCanvas.toDataURL('image/jpeg')
+	elLink.href = memeContent
+}
+
+/// Line Operators ///
+
 function onDrawText(text) {
     setLineTxt(text)
     renderMeme()
 }
 
-/// Download ///
+function onSetTxtColor(txtColor) {
+    setColor(txtColor)
+    renderMeme()
+}
 
-function onDownloadMeme(elLink) {
-	const memeContent = gCanvas.toDataURL('image/jpeg')
-	elLink.href = memeContent
+function onIncreaseTxtSize() {
+    increaseTxtSize()
+    renderMeme()
+}
+
+function onDecreaseTxtSize() {
+    decreaseTxtSize()
+    renderMeme()
 }
