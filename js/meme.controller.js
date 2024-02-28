@@ -19,9 +19,9 @@ function renderLine(memeLines) {
     memeLines.forEach(line => {
         lineIdx += 1
         gCtx.fillStyle = line.color
-        gCtx.strokeStyle = line.color
+        gCtx.strokeStyle = 'black'
 
-        gCtx.font = `${line.size}px Arial`
+        gCtx.font = `${line.size}px ${line.font}`
         gCtx.textAlign = 'center'
         gCtx.textBaseline = 'middle'
 
@@ -100,5 +100,10 @@ function onEditTxt(ev) {
     const clickedLine = isLineClicked(ev)
     if (!clickedLine) return
     editLine(clickedLine)
+    renderMeme()
+}
+
+function onSetFontFamily(font) {
+    setFontFamily(font)
     renderMeme()
 }

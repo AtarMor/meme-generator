@@ -12,6 +12,7 @@ var gMeme = {
         {
             txt: 'I sometimes eat Falafel',
             size: 20,
+            font: 'impact',
             color: 'red',
             pos: {
                 x: 225,
@@ -95,10 +96,15 @@ function editLine(clickedLine) {
     gMeme.selectedLineIdx=lineIdx
 }
 
+function setFontFamily(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font
+}
+
 function _createNewLine(pos) {
     return {
         txt: 'Enter text',
         size: 20,
+        font: 'impact',
         color: 'blue',
         pos,
     }

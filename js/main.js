@@ -31,6 +31,7 @@ function toggleMenu() {
 function resizeCanvas() {
 	const elContainer = document.querySelector('.canvas-container')
 
+    if (!elContainer.clientWidth && !elContainer.clientHeight) return
 	gCanvas.width = elContainer.clientWidth
 	gCanvas.height = elContainer.clientHeight
     renderMeme()
