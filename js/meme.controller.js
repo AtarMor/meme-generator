@@ -140,9 +140,10 @@ function onDisplaySavedMemes() {
 
 function renderSavedMemes() {
     const memes = getSavedMemes()
+    const elSavedMemes = document.querySelector('.saved-memes')
+    elSavedMemes.innerHTML = ''
 
     memes.forEach(meme => {
-        const elSavedMemes = document.querySelector('.saved-memes')
 
         renderImg(meme);
         renderLine(meme.lines);

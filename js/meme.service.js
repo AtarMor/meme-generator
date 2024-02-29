@@ -10,12 +10,12 @@ let gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I sometimes eat Falafel',
+            txt: 'Enter text',
             size: 20,
             font: 'impact',
             color: 'red',
             pos: {
-                x: 225,
+                x: 175,
                 y: 50,
                 width: 0,
                 height: 0
@@ -103,8 +103,8 @@ function setFontFamily(font) {
 
 function alignText(dir) {
     if (dir === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
-    else if (dir === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 225
-    else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 400
+    else if (dir === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 175
+    else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 300
 }
 
 function deleteLine() {
@@ -123,7 +123,7 @@ function generateMeme() {
                 font: 'impact',
                 color: 'pink',
                 pos: {
-                    x: 225,
+                    x: 175,
                     y: 50,
                     width: 0,
                     height: 0

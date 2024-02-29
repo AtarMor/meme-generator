@@ -18,14 +18,14 @@ function onInit() {
 
 function goGallery() {
     const elMemeEditor = document.querySelector('.meme-editor')
+    const elSavedMemes = document.querySelector('.saved-memes')
     elMemeEditor.classList.add('hidden')
+    elSavedMemes.classList.add('hidden')
 
     const elFilter = document.querySelector('.filter')
     const elGallery = document.querySelector('.image-gallery')
-    const elSavedMemes = document.querySelector('.saved-memes')
     elFilter.classList.remove('hidden')
     elGallery.classList.remove('hidden')
-    elSavedMemes.classList.remove('hidden')
 }
 
 function toggleMenu() {
