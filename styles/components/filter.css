@@ -13,7 +13,7 @@
 
 .filter .search-img {
     display: flex;
-    background-color: var(--clrPrimary1);
+    background-color: var(--clrPrimary);
     font-size: 1rem;
 }
 

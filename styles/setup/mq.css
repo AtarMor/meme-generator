@@ -33,22 +33,39 @@
     }
 }
 
-
 /* Medium */
 @media (width > 720px) {
     .meme-editor-layout {
-        flex-direction: row;
-        justify-content: space-evenly;
+        grid-template-columns: 30px 1fr minmax(300px, 1fr) 30px;
+    }
+    .meme-editor .canvas-container{
+        grid-column: 2;
+    }
+
+    .main-header {
+        border-radius: 40px;
+        margin: 20px;
+        padding: 1em 5em;
+    }
+
+    .filter .search-img {
+        background-color: var(--clrPrimary1);
     }
 
     .toggle-menu-btn {
         display: none;
     }
-    
+
     .filter {
         grid-template-columns: 1fr auto 1fr auto;
         gap: 10px;
         padding-bottom: 20px;
+    }
+    .main-content {
+        margin-inline: 20px;
+        background-color: var(--clrPrimary);
+        border-radius: 20px;
+        padding: 20px;
     }
 }
 

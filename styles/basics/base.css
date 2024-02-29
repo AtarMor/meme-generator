@@ -3,6 +3,7 @@
 }
 
 body {
+    width: 100dvw;
     margin: 0;
     background-color: var(--clrPrimary1);
     color: var(--clrPrimary-2);

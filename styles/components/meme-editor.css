@@ -1,26 +1,61 @@
 .canvas-container {
     width: 350px;
     height: 350px;
-    border: 1px solid lightgray;
+	border-radius: 20px;
 }
 
 canvas {
 	display: block;
 	background-color: var( --clrPrimary);
 	margin:auto;
+	border-radius: 20px;
+	border: 5px solid #23252e;
 }
 
 .edit-options {
-	gap: 50px;
+	display: grid;
+	grid-template-rows: 1fr 1fr 2fr 1.5fr 1fr;
+	gap: 10px;
 	padding: 1em;
+	justify-items: center;
+	align-items: center;
 }
 
 .edit-options button {
+	border-radius: 10px;
+}
+
+.line-enter {
+	justify-self: stretch;
+	align-self: stretch;
+	border-radius: 20px;
+	text-align: center;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	padding: 0.5em;
+	border: none;
+	/* font-family: Impact, sans-serif; */
+}
+
+.btn-container.text-edit {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	gap: 10px;
+	background-color: var(--clrSecondary1);
+	padding: 0.5em;
 	border-radius: 20px;
 }
 
-.emoji-container > button {
+.emoji-container button {
 	background: transparent;
 	font-size: 2rem;
 	padding: 0 0.2em;
+}
+
+.actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
 }
