@@ -31,10 +31,8 @@ canvas {
 	border-radius: 20px;
 	text-align: center;
 	font-size: 1.2rem;
-	text-transform: uppercase;
 	padding: 0.5em;
 	border: none;
-	/* font-family: Impact, sans-serif; */
 }
 
 .btn-container.text-edit {

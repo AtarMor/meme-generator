@@ -55,7 +55,7 @@ function onDownloadMeme(elLink) {
 /// Line Operators ///
 
 function onDrawText(text) {
-    setLineTxt(text)
+    editLineTxt(text)
     renderMeme()
 }
 
@@ -85,11 +85,16 @@ function onAddLine() {
     }
     addLine(pos)
     renderMeme()
+
+    const elLineEnter = document.querySelector('.line-enter')
+    elLineEnter.value = ''
 }
 
 function onSwitchLine() {
-    switchLine()
+    const currLineText = switchLine()
     renderMeme()
+    const elLineEnter = document.querySelector('.line-enter')
+    elLineEnter.value = currLineText
 }
 
 function markSelectedLine(line) {
@@ -106,11 +111,14 @@ function markSelectedLine(line) {
     gCtx.closePath()
 }
 
-function onEditTxt(ev) {
+function onCanvasClick(ev) {
     const clickedLine = isLineClicked(ev)
     if (!clickedLine) return
-    editLine(clickedLine)
+    const currLineText = updateSelectedLineIdx(clickedLine)
     renderMeme()
+
+    const elLineEnter = document.querySelector('.line-enter')
+    elLineEnter.value = currLineText
 }
 
 function onSetFontFamily(font) {
