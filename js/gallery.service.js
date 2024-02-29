@@ -3,9 +3,17 @@
 let gImgIdx = 1
 
 let gImgs = _createImgs(18)
+_addImgKeyWords()
+
 
 function getImgs() {
-    return gImgs
+    if (!gFilter) return gImgs
+    return _filterImgs(gFilter)
+}
+
+function _filterImgs() {
+    const searchedKeyword = gFilter.toLowerCase()
+    return gImgs.filter(img => img.keywords.includes(searchedKeyword));
 }
 
 function _createImgs(count) {
@@ -24,4 +32,15 @@ function _createImg(url) {
         url,
         keywords: []
     }
+}
+
+function _addImgKeyWords() {
+    gImgs[0].keywords = ['politic']
+    gImgs[1].keywords = ['cute', 'dog']
+    gImgs[2].keywords = ['cute', 'dog', 'baby']
+    gImgs[2].keywords = ['cute', 'cat']
+}
+
+function _addImgKeyWord(idx, keyword) {
+    gImgs[idx].keywords.push(keyword)
 }

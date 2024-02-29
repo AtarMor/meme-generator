@@ -1,5 +1,10 @@
 'use strict'
 
+const MEMES_DB = 'memesDb'
+const MEMES_PIC_DB = 'memesPicDb'
+const gSavedMemes = []
+const gSavedPicMemes = []
+
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
@@ -126,6 +131,15 @@ function generateMeme() {
             },
         ]
     }
+}
+
+function saveMeme() {
+    gSavedMemes.push(structuredClone(gMeme))
+    saveToStorage(MEMES_DB, gSavedMemes)
+}
+
+function getSavedMemes() {
+    return loadFromStorage(MEMES_DB)
 }
 
 function _createNewLine(pos) {

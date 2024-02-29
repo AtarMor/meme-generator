@@ -18,7 +18,7 @@
         <nav class="main-nav">
             <ul class="main-nav-list clean-list">
                 <button onclick="goGallery()">Gallery</button>
-                <button>Memes</button>
+                <button onclick="onDisplaySavedMemes()">Memes</button>
                 <button onclick="onGenerateMeme()">Random</button>
                 <button>About</button>
             </ul>
@@ -28,7 +28,17 @@
 
     <main class="main-content">
         <div class="filter grid">
-            <input class="search-img" type="text" name="search" placeholder="Search"></input>
+
+            <input class="search-img" list="img-keywords" name="img-keyword" placeholder="Search"
+                oninput="onSetFilter(value)" />
+            <datalist id="img-keywords">
+                <option value="Politic"></option>
+                <option value="Dog"></option>
+                <option value="Cat"></option>
+                <option value="Cute"></option>
+                <option value="Baby"></option>
+            </datalist>
+
             <div class="search-by-words">Funny Animal Happy</div>
             <button class="more-btn">More</button>
         </div>
@@ -51,11 +61,12 @@
                     <button onclick="onAddLine()">Add</button>
                     <button onclick="onSwitchLine()">Switch</button>
                     <button onclick="onDeleteLine()">Delete</button>
+                    <button onclick="onSaveMeme()">Save meme</button>
 
                     <button onclick="onAlignText('left')" class="fa align-left"></button>
                     <button onclick="onAlignText('center')" class="fa align-center"></button>
                     <button onclick="onAlignText('right')" class="fa align-right"></button>
-                    
+
                     <select name="font-family" onchange="onSetFontFamily(value)">
                         <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
@@ -73,12 +84,16 @@
             </div>
         </section>
 
+        <section class="saved-memes gallery-layout">
+
+        </section>
+
     </main>
     <aside></aside>
     <footer></footer>
 
     <!-- <script src="js/util.service.js"></script> -->
-    <!-- <script src="js/storage.service.js"></script> -->
+    <script src="js/storage.service.js"></script>
     <script src="js/gallery.service.js"></script>
     <script src="js/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>

@@ -67,7 +67,7 @@ function onDecreaseTxtSize() {
 
 let y = 50
 function onAddLine() {
-    const {lines} = getMeme()
+    const { lines } = getMeme()
     y += 50
     if (y > 400) y = 50
     const pos = {
@@ -84,7 +84,7 @@ function onSwitchLine() {
 }
 
 function markSelectedLine(line) {
-    if(!line) return
+    if (!line) return
     gCtx.beginPath()
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 1
@@ -117,4 +117,42 @@ function onAlignText(dir) {
 function onDeleteLine() {
     deleteLine()
     renderMeme()
+}
+
+/// Save Meme ///
+
+function onSaveMeme() {
+    saveMeme()
+}
+
+function onDisplaySavedMemes() {
+    renderSavedMemes()
+    const elFilter = document.querySelector('.filter')
+    const elGallery = document.querySelector('.image-gallery')
+    const elMemeEditor = document.querySelector('.meme-editor')
+    const elSavedMemes = document.querySelector('.saved-memes')
+
+    elFilter.classList.add('hidden')
+    elGallery.classList.add('hidden')
+    elMemeEditor.classList.add('hidden')
+    elSavedMemes.classList.remove('hidden')
+}
+
+function renderSavedMemes() {
+    const memes = getSavedMemes()
+
+    memes.forEach(meme => {
+        const elSavedMemes = document.querySelector('.saved-memes')
+
+        renderImg(meme);
+        renderLine(meme.lines);
+
+        let dataUrl = gCanvas.toDataURL();
+        const img = new Image()
+        img.src = dataUrl;
+
+        img.onload = () => {
+            elSavedMemes.appendChild(img);
+        }
+    })
 }
