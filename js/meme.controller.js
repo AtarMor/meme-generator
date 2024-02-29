@@ -12,7 +12,7 @@ function renderImg(meme) {
     const elImg = new Image()
     elImg.src = getImgById(meme.selectedImgId).url
 
-    gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function renderLine(memeLines) {
@@ -48,7 +48,7 @@ function renderEmoji(memeEmojis) {
 /// Download ///
 
 function onDownloadMeme(elLink) {
-    const memeContent = gCanvas.toDataURL('image/jpeg')
+    const memeContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = memeContent
 }
 
@@ -78,9 +78,9 @@ let y = 50
 function onAddLine() {
     const { lines } = getMeme()
     y += 50
-    if (y > 400) y = 50
+    if (y > 250) y = 50
     const pos = {
-        x: gCanvas.width / 2,
+        x: gElCanvas.width / 2,
         y,
     }
     addLine(pos)
@@ -171,7 +171,7 @@ function renderSavedMemes() {
         renderLine(meme.lines)
         renderEmoji(meme.emojis)
 
-        let dataUrl = gCanvas.toDataURL()
+        let dataUrl = gElCanvas.toDataURL()
         const img = new Image()
         img.src = dataUrl
 
@@ -184,7 +184,7 @@ function renderSavedMemes() {
 /// Share on Facebook ///
 
 function onFacebookShare() {
-    const imgDataUrl = gCanvas.toDataURL('image/jpeg')
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
 
     function onSuccess(uploadedImgUrl) {
         const url = encodeURIComponent(uploadedImgUrl)
@@ -211,4 +211,29 @@ function doUploadImg(imgDataUrl, onSuccess) {
     }
     XHR.open('POST', '//ca-upload.com/here/upload.php')
     XHR.send(formData)
+}
+
+/// Dragging Line ///
+
+function onDown(ev) {
+    const clickedLine = isLineClicked(ev)
+	if (!clickedLine) return
+	setLineDrag(clickedLine, true)
+}
+
+function onMove(ev) {
+    const meme = getMeme()
+    const line = meme.lines[meme.selectedLineIdx]
+    if (!line.isDrag) return
+
+	const pos = getEvPos(ev)
+	const dx = pos.x - line.pos.x
+	const dy = pos.y - line.pos.y
+	moveLine(dx, dy)
+	renderMeme()
+}
+
+function onUp() {
+    const clickedLine = getCurrLine()
+	setLineDrag(clickedLine, false)
 }

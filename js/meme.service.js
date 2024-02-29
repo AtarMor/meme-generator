@@ -1,9 +1,7 @@
 'use strict'
 
 const MEMES_DB = 'memesDb'
-const MEMES_PIC_DB = 'memesPicDb'
 const gSavedMemes = []
-const gSavedPicMemes = []
 
 let gMeme = {
     selectedImgId: 1,
@@ -19,7 +17,8 @@ let gMeme = {
                 y: 50,
                 width: 0,
                 height: 0
-            }
+            },
+            isDrag: false,
         },
     ],
     emojis: []
@@ -81,23 +80,41 @@ function saveLineDimensions(lineIdx, width, height) {
 }
 
 function isLineClicked(ev) {
-    const { offsetX, offsetY } = ev
+    const clickPos = getEvPos(ev)
     const { pos } = gMeme.lines
 
     const clickedLine = gMeme.lines.find(line => {
         const { pos } = line
-        return offsetX >= pos.x - pos.width / 2 &&
-            offsetX <= pos.x - pos.width / 2 + pos.width &&
-            offsetY >= pos.y - pos.height / 2 &&
-            offsetY <= pos.y - pos.height / 2 + pos.height
+        return clickPos.x >= pos.x - pos.width / 2 &&
+            clickPos.x <= pos.x - pos.width / 2 + pos.width &&
+            clickPos.y >= pos.y - pos.height / 2 &&
+            clickPos.y <= pos.y - pos.height / 2 + pos.height
     })
     return clickedLine
 }
 
+function setLineDrag(clickedLine, isDrag) {
+    const lineIdx = _getLineIdx(clickedLine)
+	gMeme.lines[lineIdx].isDrag = isDrag
+}
+
+function moveLine(dx, dy) {
+	gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
+	gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+}
+
+function getCurrLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
 function updateSelectedLineIdx(clickedLine) {
-    const lineIdx = gMeme.lines.findIndex(line => line === clickedLine)
+    const lineIdx = _getLineIdx(clickedLine)
     gMeme.selectedLineIdx = lineIdx
     return gMeme.lines[gMeme.selectedLineIdx].txt
+}
+
+function _getLineIdx(clickedLine) {
+    return gMeme.lines.findIndex(line => line === clickedLine)
 }
 
 function setFontFamily(font) {

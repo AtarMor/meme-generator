@@ -1,19 +1,40 @@
 'use strict'
 
-let gCanvas
+const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
+
+let gElCanvas
 let gCtx
 
 function onInit() {
-    gCanvas = document.querySelector('canvas')
-    gCtx = gCanvas.getContext('2d')
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
     const elMemeEditor = document.querySelector('.meme-editor')
     const elSavedMemes = document.querySelector('.saved-memes')
     elMemeEditor.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
+    addListeners()
+
     renderGallery()
     resizeCanvas()
 	window.addEventListener('resize', resizeCanvas)
     renderMeme()
+}
+
+function addListeners() {
+	addMouseListeners()
+	addTouchListeners()
+}
+
+function addMouseListeners() {
+	gElCanvas.addEventListener('mousedown', onDown)
+	gElCanvas.addEventListener('mousemove', onMove)
+	gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+	gElCanvas.addEventListener('touchstart', onDown)
+	gElCanvas.addEventListener('touchmove', onMove)
+	gElCanvas.addEventListener('touchend', onUp)
 }
 
 function goGallery() {
@@ -36,8 +57,8 @@ function resizeCanvas() {
 	const elContainer = document.querySelector('.canvas-container')
 
     if (!elContainer.clientWidth && !elContainer.clientHeight) return
-	gCanvas.width = elContainer.clientWidth
-	gCanvas.height = elContainer.clientWidth
+	gElCanvas.width = elContainer.clientWidth
+	gElCanvas.height = elContainer.clientWidth
     renderMeme()
 }
 
