@@ -21,7 +21,8 @@ let gMeme = {
                 height: 0
             }
         },
-    ]
+    ],
+    emojis: []
 }
 
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
@@ -110,6 +111,14 @@ function alignText(dir) {
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     switchLine()
+}
+
+function drawEmoji(emoji) {
+    const newEmoji = {
+        txt: emoji,
+        size: 20
+    }
+    gMeme.emojis.push(newEmoji)
 }
 
 function generateMeme() {

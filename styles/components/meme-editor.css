@@ -19,3 +19,8 @@ canvas {
 	border-radius: 20px;
 }
 
+.emoji-container > button {
+	background: transparent;
+	font-size: 2rem;
+	padding: 0 0.2em;
+}

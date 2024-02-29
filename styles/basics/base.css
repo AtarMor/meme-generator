@@ -36,6 +36,7 @@ button {
     font-size: 1em;
     font-family: inherit;
     cursor: pointer;
+    border: none;
 
     transition:
         color 0.3s,

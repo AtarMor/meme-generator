@@ -5,6 +5,7 @@ function renderMeme() {
 
     renderImg(meme)
     renderLine(meme.lines)
+    renderEmoji(meme.emojis)
 }
 
 function renderImg(meme) {
@@ -15,6 +16,7 @@ function renderImg(meme) {
 }
 
 function renderLine(memeLines) {
+    if (!memeLines.length) return
     let lineIdx = -1
     memeLines.forEach(line => {
         lineIdx += 1
@@ -34,6 +36,13 @@ function renderLine(memeLines) {
     })
     const selectedLine = getSelectedLine()
     markSelectedLine(selectedLine)
+}
+
+function renderEmoji(memeEmojis) {
+    if (!memeEmojis.length) return
+    memeEmojis.forEach(emoji => {
+        gCtx.fillText(emoji.txt, 30, 30)
+    })
 }
 
 /// Download ///
@@ -119,6 +128,11 @@ function onDeleteLine() {
     renderMeme()
 }
 
+function onDrawEmoji(emoji) {
+    drawEmoji(emoji)
+    renderMeme()
+}
+
 /// Save Meme ///
 
 function onSaveMeme() {
@@ -145,15 +159,16 @@ function renderSavedMemes() {
 
     memes.forEach(meme => {
 
-        renderImg(meme);
-        renderLine(meme.lines);
+        renderImg(meme)
+        renderLine(meme.lines)
+        renderEmoji(meme.emojis)
 
-        let dataUrl = gCanvas.toDataURL();
+        let dataUrl = gCanvas.toDataURL()
         const img = new Image()
-        img.src = dataUrl;
+        img.src = dataUrl
 
         img.onload = () => {
-            elSavedMemes.appendChild(img);
+            elSavedMemes.appendChild(img)
         }
     })
 }
@@ -161,31 +176,31 @@ function renderSavedMemes() {
 /// Share on Facebook ///
 
 function onFacebookShare() {
-	const imgDataUrl = gCanvas.toDataURL('image/jpeg')
+    const imgDataUrl = gCanvas.toDataURL('image/jpeg')
 
-	function onSuccess(uploadedImgUrl) {
-		const url = encodeURIComponent(uploadedImgUrl)
-		window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
-	}
+    function onSuccess(uploadedImgUrl) {
+        const url = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
+    }
 
-	doUploadImg(imgDataUrl, onSuccess)
+    doUploadImg(imgDataUrl, onSuccess)
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
-	const formData = new FormData()
-	formData.append('img', imgDataUrl)
+    const formData = new FormData()
+    formData.append('img', imgDataUrl)
 
-	const XHR = new XMLHttpRequest()
-	XHR.onreadystatechange = () => {
-		if (XHR.readyState !== XMLHttpRequest.DONE) return
-		if (XHR.status !== 200) return console.error('Error uploading image')
-		const { responseText: url } = XHR
+    const XHR = new XMLHttpRequest()
+    XHR.onreadystatechange = () => {
+        if (XHR.readyState !== XMLHttpRequest.DONE) return
+        if (XHR.status !== 200) return console.error('Error uploading image')
+        const { responseText: url } = XHR
 
-		onSuccess(url)
-	}
-	XHR.onerror = (req, ev) => {
-		console.error('Error connecting to server with request:', req, '\nGot response data:', ev)
-	}
-	XHR.open('POST', '//ca-upload.com/here/upload.php')
-	XHR.send(formData)
+        onSuccess(url)
+    }
+    XHR.onerror = (req, ev) => {
+        console.error('Error connecting to server with request:', req, '\nGot response data:', ev)
+    }
+    XHR.open('POST', '//ca-upload.com/here/upload.php')
+    XHR.send(formData)
 }
