@@ -39,7 +39,7 @@ function renderLine(memeLines) {
 }
 
 function renderEmoji(memeEmojis) {
-    if (!memeEmojis.length) return
+    if (!memeEmojis || !memeEmojis.length) return
     memeEmojis.forEach(emoji => {
         gCtx.fillText(emoji.txt, 30, 30)
     })

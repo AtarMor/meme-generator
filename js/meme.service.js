@@ -157,7 +157,8 @@ function generateMeme() {
                     height: 0
                 }
             },
-        ]
+        ],
+        emojis: []
     }
 }
 
