@@ -114,11 +114,11 @@ function deleteLine() {
 
 function generateMeme() {
     gMeme = {
-        selectedImgId: 1,
+        selectedImgId: getRandomInt(1, gImgs.length + 1),
         selectedLineIdx: 0,
         lines: [
             {
-                txt: 'Falafel',
+                txt: makeRandLine(),
                 size: 20,
                 font: 'impact',
                 color: 'pink',
