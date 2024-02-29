@@ -53,17 +53,19 @@
                 <canvas width="450" height="450" onclick="onEditTxt(event)"></canvas>
             </div>
             <div class="edit-options grid justify-center">
+
                 <input type="text" name="text-line" required minlength="1" maxlength="100" size="10"
                     placeholder="Enter Text" oninput="onDrawText(value)" />
-                <div class="btn-container">
-                    <input type="color" name="txt-color" value="#555455" onchange="onSetTxtColor(value)" />
+
+                <div class="btn-container line-edit">
+                    <button onclick="onAddLine()">Add</button>
+                    <button onclick="onDeleteLine()">Delete</button>
+                    <button onclick="onSwitchLine()">Switch</button>
+                </div>
+
+                <div class="btn-container text-edit">
                     <button onclick="onIncreaseTxtSize()">A+</button>
                     <button onclick="onDecreaseTxtSize()">A-</button>
-                    <button onclick="onAddLine()">Add</button>
-                    <button onclick="onSwitchLine()">Switch</button>
-                    <button onclick="onDeleteLine()">Delete</button>
-                    <button onclick="onSaveMeme()">Save meme</button>
-
                     <button onclick="onAlignText('left')" class="fa align-left"></button>
                     <button onclick="onAlignText('center')" class="fa align-center"></button>
                     <button onclick="onAlignText('right')" class="fa align-right"></button>
@@ -75,11 +77,14 @@
                         <option value="tahoma">Tahoma</option>
                         <option value="monospace">Monospace</option>
                     </select>
-
+                    <input type="color" name="txt-color" value="#555455" onchange="onSetTxtColor(value)" />
+                    <button onclick="onSaveMeme()">Save meme</button>
                 </div>
+
                 <div class="emoji">emoji</div>
+
                 <div class="actions">
-                    <button>Share</button>
+                    <button onclick="onFacebookShare()">Share</button>
                     <a href="#" class="btn" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download</a>
                 </div>
             </div>
