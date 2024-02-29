@@ -44,11 +44,13 @@
     .toggle-menu-btn {
         display: none;
     }
-
-    .canvas-container {
+    .filter {
+        flex-direction: row;
+    }
+    /* .canvas-container {
         width: 450px;
         height: 450px;
-    }
+    } */
 }
 
 /* Large */

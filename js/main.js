@@ -37,7 +37,7 @@ function resizeCanvas() {
 
     if (!elContainer.clientWidth && !elContainer.clientHeight) return
 	gCanvas.width = elContainer.clientWidth
-	gCanvas.height = elContainer.clientHeight
+	gCanvas.height = elContainer.clientWidth
     renderMeme()
 }
 
