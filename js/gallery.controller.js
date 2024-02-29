@@ -1,18 +1,13 @@
 'use strict'
 
 function renderGallery() {
+    const imgs = getImgs()
     const elGallery = document.querySelector('.image-gallery')
-    elGallery.innerHTML = `
-    <img id=1 onclick="onImgSelect(id)" src="img/1.jpg" alt="">
-            <img id=2 onclick="onImgSelect(id)" src="img/2.jpg" alt="">
-            <img src="img/3.jpg" alt="">
-            <img src="img/4.jpg" alt="">
-            <img src="img/5.jpg" alt="">
-            <img src="img/6.jpg" alt="">
-            <img src="img/7.jpg" alt="">
-            <img src="img/8.jpg" alt="">
-            <img src="img/9.jpg" alt="">
-    ` 
+    const strHTMLs = imgs.map(img => {
+        return `<img id=${img.id} onclick="onImgSelect(${img.id})" src=${img.url} alt="">`
+
+    })
+    elGallery.innerHTML = strHTMLs.join('')
 }
 
 function onImgSelect(imgId) {

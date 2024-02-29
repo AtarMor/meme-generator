@@ -36,3 +36,15 @@ function resizeCanvas() {
 	gCanvas.height = elContainer.clientHeight
     renderMeme()
 }
+
+function onGenerateMeme() {
+    generateMeme()
+    renderMeme()
+    const elFilter = document.querySelector('.filter')
+    const elGallery = document.querySelector('.image-gallery')
+    const elMemeEditor = document.querySelector('.meme-editor')
+    
+    elFilter.classList.add('hidden')
+    elGallery.classList.add('hidden')
+    elMemeEditor.classList.remove('hidden')
+}

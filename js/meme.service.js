@@ -1,11 +1,6 @@
 'use strict'
 
-var gImgs = [
-    { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
-    { id: 2, url: 'img/2.jpg', keywords: ['cute', 'cat'] }
-]
-
-var gMeme = {
+let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
@@ -24,7 +19,7 @@ var gMeme = {
     ]
 }
 
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getMeme() {
     return gMeme
@@ -102,14 +97,35 @@ function setFontFamily(font) {
 }
 
 function alignText(dir) {
-    if (align === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
-    else if (align === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 225
-    else if (align === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 400
+    if (dir === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
+    else if (dir === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 225
+    else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 400
 }
 
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     switchLine()
+}
+
+function generateMeme() {
+    gMeme = {
+        selectedImgId: 1,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: 'Falafel',
+                size: 20,
+                font: 'impact',
+                color: 'pink',
+                pos: {
+                    x: 225,
+                    y: 50,
+                    width: 0,
+                    height: 0
+                }
+            },
+        ]
+    }
 }
 
 function _createNewLine(pos) {
