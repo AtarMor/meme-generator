@@ -42,6 +42,7 @@ function setImg(imgId) {
 /// Line Update ///
 
 function setLineTxt(text) {
+    if (!gMeme.selectedLineIdx) return
     gMeme.lines[gMeme.selectedLineIdx].txt = text
 }
 
@@ -64,7 +65,7 @@ function addLine(pos) {
 }
 
 function switchLine() {
-    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
+    if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx += 1
 }
 
@@ -93,11 +94,22 @@ function isLineClicked(ev) {
 
 function editLine(clickedLine) {
     const lineIdx = gMeme.lines.findIndex(line => line === clickedLine)
-    gMeme.selectedLineIdx=lineIdx
+    gMeme.selectedLineIdx = lineIdx
 }
 
 function setFontFamily(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font
+}
+
+function alignText(dir) {
+    if (align === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
+    else if (align === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 225
+    else if (align === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 400
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    switchLine()
 }
 
 function _createNewLine(pos) {

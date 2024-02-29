@@ -84,6 +84,7 @@ function onSwitchLine() {
 }
 
 function markSelectedLine(line) {
+    if(!line) return
     gCtx.beginPath()
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 1
@@ -105,5 +106,15 @@ function onEditTxt(ev) {
 
 function onSetFontFamily(font) {
     setFontFamily(font)
+    renderMeme()
+}
+
+function onAlignText(dir) {
+    alignText(dir)
+    renderMeme()
+}
+
+function onDeleteLine() {
+    deleteLine()
     renderMeme()
 }
