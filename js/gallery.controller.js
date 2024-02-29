@@ -1,6 +1,6 @@
 'use strict'
 
-let gFilter
+let gFilter = null
 
 function renderGallery() {
     const imgs = getImgs()
@@ -27,5 +27,10 @@ function onImgSelect(imgId) {
 
 function onSetFilter(keyword) {
     gFilter = keyword
+    renderGallery()
+}
+
+function onClearFilter() {
+    gFilter = null
     renderGallery()
 }

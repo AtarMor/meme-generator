@@ -22,8 +22,10 @@ function goGallery() {
 
     const elFilter = document.querySelector('.filter')
     const elGallery = document.querySelector('.image-gallery')
+    const elSavedMemes = document.querySelector('.saved-memes')
     elFilter.classList.remove('hidden')
     elGallery.classList.remove('hidden')
+    elSavedMemes.classList.remove('hidden')
 }
 
 function toggleMenu() {

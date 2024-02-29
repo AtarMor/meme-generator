@@ -38,7 +38,7 @@ function _addImgKeyWords() {
     gImgs[0].keywords = ['politic']
     gImgs[1].keywords = ['cute', 'dog']
     gImgs[2].keywords = ['cute', 'dog', 'baby']
-    gImgs[2].keywords = ['cute', 'cat']
+    gImgs[3].keywords = ['cute', 'cat']
 }
 
 function _addImgKeyWord(idx, keyword) {
