@@ -5,10 +5,14 @@ let gImgIdx = 1
 let gImgs = _createImgs(18)
 _addImgKeyWords()
 
-
 function getImgs() {
     if (!gFilter) return gImgs
     return _filterImgs(gFilter)
+}
+
+function getImgById(imgId) {
+    const img = gImgs.find(img => img.id === imgId)
+    return img
 }
 
 function _filterImgs() {

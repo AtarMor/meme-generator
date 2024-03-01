@@ -3,26 +3,7 @@
 const MEMES_DB = 'memesDb'
 const gSavedMemes = []
 
-let gMeme = {
-    selectedImgId: 1,
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'Enter text',
-            size: 20,
-            font: 'impact',
-            color: 'red',
-            pos: {
-                x: 175,
-                y: 50,
-                width: 0,
-                height: 0
-            },
-            isDrag: false,
-        },
-    ],
-    emojis: []
-}
+let gMeme
 
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
@@ -30,13 +11,8 @@ function getMeme() {
     return gMeme
 }
 
-function getImgById(imgId) {
-    const img = gImgs.find(img => img.id === imgId)
-    return img
-}
-
-function setImg(imgId) {
-    gMeme.selectedImgId = imgId
+function addMeme(imgId) {
+    gMeme = _createMeme(imgId)
 }
 
 /// Line Update ///
@@ -58,25 +34,27 @@ function decreaseTxtSize() {
     gMeme.lines[gMeme.selectedLineIdx].size -= 1
 }
 
-function addLine(pos) {
-    const newLine = _createNewLine(pos)
+function addLine(txt) {
+    const newLine = _createLine(txt)
     gMeme.lines.push(newLine)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 function switchLine() {
+    if (!gMeme.lines.length) return ''
     if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx += 1
     return gMeme.lines[gMeme.selectedLineIdx].txt
 }
 
 function getSelectedLine() {
+    if (!gMeme.selectedLineIdx) return
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
-function saveLineDimensions(lineIdx, width, height) {
-    gMeme.lines[lineIdx].pos.width = width
-    gMeme.lines[lineIdx].pos.height = height
+function saveTxtDimensions(txt, txtWidth, txtHeight) {
+    txt.pos.width = txtWidth
+    txt.pos.height = txtHeight
 }
 
 function isLineClicked(ev) {
@@ -94,6 +72,7 @@ function isLineClicked(ev) {
 }
 
 function setLineDrag(clickedLine, isDrag) {
+    if(!clickedLine) return
     const lineIdx = _getLineIdx(clickedLine)
 	gMeme.lines[lineIdx].isDrag = isDrag
 }
@@ -129,36 +108,14 @@ function alignText(dir) {
 
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    switchLine()
-}
-
-function drawEmoji(emoji) {
-    const newEmoji = {
-        txt: emoji,
-        size: 20
-    }
-    gMeme.emojis.push(newEmoji)
+    if (!gMeme.lines.length) gMeme.selectedLineIdx = null
 }
 
 function generateMeme() {
     gMeme = {
         selectedImgId: getRandomInt(1, gImgs.length + 1),
         selectedLineIdx: 0,
-        lines: [
-            {
-                txt: makeRandLine(),
-                size: 20,
-                font: 'impact',
-                color: 'pink',
-                pos: {
-                    x: 175,
-                    y: 50,
-                    width: 0,
-                    height: 0
-                }
-            },
-        ],
-        emojis: []
+        lines: [_createLine(makeRandLine())]
     }
 }
 
@@ -171,12 +128,26 @@ function getSavedMemes() {
     return loadFromStorage(MEMES_DB)
 }
 
-function _createNewLine(pos) {
+function _createMeme(selectedImgId) {
     return {
-        txt: 'Enter text',
-        size: 20,
+        selectedImgId,
+        selectedLineIdx: 0,
+        lines: [_createLine()]
+    }
+}
+
+function _createLine(txt='Enter text') {
+    return {
+        txt,
+        size: 30,
         font: 'impact',
-        color: 'blue',
-        pos,
+        color: 'red',
+        pos: {
+            x: 175,
+            y: 50,
+            width: 0,
+            height: 0
+        },
+        isDrag: false,
     }
 }

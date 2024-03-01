@@ -12,7 +12,7 @@ function renderGallery() {
 }
 
 function onImgSelect(imgId) {
-    setImg(+imgId)
+    addMeme(+imgId)
     renderMeme()
     const elFilter = document.querySelector('.filter')
     const elGallery = document.querySelector('.image-gallery')
@@ -32,5 +32,6 @@ function onSetFilter(keyword) {
 
 function onClearFilter() {
     gFilter = null
+    document.querySelector('.search-img').value = ''
     renderGallery()
 }

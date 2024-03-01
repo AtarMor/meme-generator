@@ -17,7 +17,7 @@ function onInit() {
     renderGallery()
     resizeCanvas()
 	window.addEventListener('resize', resizeCanvas)
-    renderMeme()
+    // renderMeme()
 }
 
 function addListeners() {

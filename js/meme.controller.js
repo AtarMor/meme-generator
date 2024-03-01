@@ -5,7 +5,6 @@ function renderMeme() {
 
     renderImg(meme)
     renderLine(meme.lines)
-    renderEmoji(meme.emojis)
 }
 
 function renderImg(meme) {
@@ -16,13 +15,10 @@ function renderImg(meme) {
 }
 
 function renderLine(memeLines) {
-    if (!memeLines.length) return
-    let lineIdx = -1
+    if (!memeLines || !memeLines.length) return
     memeLines.forEach(line => {
-        lineIdx += 1
         gCtx.fillStyle = line.color
         gCtx.strokeStyle = 'black'
-
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.textAlign = 'center'
         gCtx.textBaseline = 'middle'
@@ -31,21 +27,14 @@ function renderLine(memeLines) {
         gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
 
         const lineWidth = gCtx.measureText(line.txt).width * 1.1
-        const lineHeight = line.size * 1.4;
-        saveLineDimensions(lineIdx, lineWidth, lineHeight)
+        const lineHeight = line.size
+        saveTxtDimensions(line, lineWidth, lineHeight)
     })
     const selectedLine = getSelectedLine()
     markSelectedLine(selectedLine)
 }
 
-function renderEmoji(memeEmojis) {
-    if (!memeEmojis || !memeEmojis.length) return
-    memeEmojis.forEach(emoji => {
-        gCtx.fillText(emoji.txt, 30, 30)
-    })
-}
-
-/// Download ///
+/// Download Meme ///
 
 function onDownloadMeme(elLink) {
     const memeContent = gElCanvas.toDataURL('image/jpeg')
@@ -74,28 +63,25 @@ function onDecreaseTxtSize() {
     renderMeme()
 }
 
-let y = 50
-function onAddLine() {
-    const { lines } = getMeme()
-    y += 50
-    if (y > 250) y = 50
-    const pos = {
-        x: gElCanvas.width / 2,
-        y,
-    }
-    addLine(pos)
+/// Add Line ///
+
+function onAddLine(txt) {
+    addLine(txt)
     renderMeme()
 
     const elLineEnter = document.querySelector('.line-enter')
     elLineEnter.value = ''
 }
 
+/// Switch Line ///
+
 function onSwitchLine() {
     const currLineText = switchLine()
     renderMeme()
-    const elLineEnter = document.querySelector('.line-enter')
-    elLineEnter.value = currLineText
+    document.querySelector('.line-enter').value = currLineText
 }
+
+/// Mark Selected Line ///
 
 function markSelectedLine(line) {
     if (!line) return
@@ -103,8 +89,9 @@ function markSelectedLine(line) {
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 1
     gCtx.textAlign = 'center'
+    gCtx.font = `${line.size}px ${line.font}`
 
-    var lineHeight = line.size * 1.4;
+    var lineHeight = line.size
     var lineWidth = gCtx.measureText(line.txt).width * 1.1
 
     gCtx.strokeRect(line.pos.x - lineWidth / 2, line.pos.y - lineHeight / 2, lineWidth, lineHeight)
@@ -136,11 +123,6 @@ function onDeleteLine() {
     renderMeme()
 }
 
-function onDrawEmoji(emoji) {
-    drawEmoji(emoji)
-    renderMeme()
-}
-
 /// Save Meme ///
 
 function onSaveMeme() {
@@ -162,6 +144,7 @@ function onDisplaySavedMemes() {
 
 function renderSavedMemes() {
     const memes = getSavedMemes()
+    if (!memes) return
     const elSavedMemes = document.querySelector('.saved-memes')
     elSavedMemes.innerHTML = ''
 
@@ -169,7 +152,6 @@ function renderSavedMemes() {
 
         renderImg(meme)
         renderLine(meme.lines)
-        renderEmoji(meme.emojis)
 
         let dataUrl = gElCanvas.toDataURL()
         const img = new Image()
@@ -213,7 +195,7 @@ function doUploadImg(imgDataUrl, onSuccess) {
     XHR.send(formData)
 }
 
-/// Dragging Line ///
+/// Dragging Text ///
 
 function onDown(ev) {
     const clickedLine = isLineClicked(ev)
@@ -224,7 +206,7 @@ function onDown(ev) {
 function onMove(ev) {
     const meme = getMeme()
     const line = meme.lines[meme.selectedLineIdx]
-    if (!line.isDrag) return
+    if (!line || !line.isDrag) return
 
 	const pos = getEvPos(ev)
 	const dx = pos.x - line.pos.x
