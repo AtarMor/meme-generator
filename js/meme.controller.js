@@ -5,6 +5,8 @@ function renderMeme() {
     const imgSrc = getImgById(meme.selectedImgId).url
     renderImg(imgSrc)
     renderLines(meme.lines)
+    const selectedLine = getSelectedLine()
+    markSelectedLine(selectedLine)
 }
 
 function renderImg(imgSrc) {
@@ -31,18 +33,9 @@ function renderLines(memeLines) {
         const lineHeight = line.size
         saveTxtDimensions(line, lineWidth, lineHeight)
     })
-    const selectedLine = getSelectedLine()
-    markSelectedLine(selectedLine)
 }
 
-/// Download Meme ///
-
-function onDownloadMeme(elLink) {
-    const memeContent = gElCanvas.toDataURL('image/jpeg')
-    elLink.href = memeContent
-}
-
-/// Line Operators ///
+/// TEXT EDIT ///
 
 function onDrawText(text) {
     editLineTxt(text)
@@ -64,51 +57,6 @@ function onDecreaseTxtSize() {
     renderMeme()
 }
 
-/// Add Line ///
-
-function onAddLine(txt) {
-    addLine(txt)
-    renderMeme()
-
-    const elLineEnter = document.querySelector('.line-enter')
-    elLineEnter.value = ''
-}
-
-/// Switch Line ///
-
-function onSwitchLine() {
-    const currLineText = switchLine()
-    renderMeme()
-    document.querySelector('.line-enter').value = currLineText
-}
-
-/// Mark Selected Line ///
-
-function markSelectedLine(line) {
-    if (!line) return
-    gCtx.beginPath()
-    gCtx.strokeStyle = 'black'
-    gCtx.lineWidth = 1
-    gCtx.textAlign = 'center'
-    gCtx.font = `${line.size}px ${line.font}`
-
-    var lineHeight = line.size
-    var lineWidth = gCtx.measureText(line.txt).width * 1.1
-
-    gCtx.strokeRect(line.pos.x - lineWidth / 2, line.pos.y - lineHeight / 2, lineWidth, lineHeight)
-    gCtx.closePath()
-}
-
-function onCanvasClick(ev) {
-    const clickedLine = isLineClicked(ev)
-    if (!clickedLine) return
-    const currLineText = updateSelectedLineIdx(clickedLine)
-    renderMeme()
-
-    const elLineEnter = document.querySelector('.line-enter')
-    elLineEnter.value = currLineText
-}
-
 function onSetFontFamily(font) {
     setFontFamily(font)
     renderMeme()
@@ -119,12 +67,85 @@ function onAlignText(dir) {
     renderMeme()
 }
 
+/// ADD & DELETE LINE ///
+
+function onAddLine(txt) {
+    addLine(txt)
+    renderMeme()
+
+    const elLineEnter = document.querySelector('.line-enter')
+    elLineEnter.value = ''
+}
+
 function onDeleteLine() {
     deleteLine()
     renderMeme()
 }
 
-/// Save Meme ///
+/// SWITCH LINE ///
+
+function onSwitchLine() {
+    const currLineText = switchLine()
+    renderMeme()
+    document.querySelector('.line-enter').value = currLineText
+}
+
+/// MARK SELECTED LINES ///
+
+function markSelectedLine(line) {
+    if (!line) return
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 1
+    gCtx.textAlign = 'center'
+    gCtx.font = `${line.size}px ${line.font}`
+
+    var lineHeight = line.size
+    var lineWidth = gCtx.measureText(line.txt).width * 1.1
+
+    gCtx.strokeRect(line.pos.x - lineWidth / 2, line.pos.y - lineHeight / 2, lineWidth, lineHeight)
+}
+
+function unmarkLine() {
+    clearLineSelection()
+    renderMeme()
+}
+
+/// DRAGGING LINES ///
+
+function onCanvasClick(ev) {
+    const clickedLine = isLineClicked(ev)
+    if (!clickedLine) return unmarkLine()
+    const currLineText = updateSelectedLineIdx(clickedLine)
+    renderMeme()
+
+    const elLineEnter = document.querySelector('.line-enter')
+    elLineEnter.value = currLineText
+}
+
+function onDown(ev) {
+    const clickedLine = isLineClicked(ev)
+    if (!clickedLine) return
+    setLineDrag(clickedLine, true)
+}
+
+function onMove(ev) {
+    const meme = getMeme()
+    const line = meme.lines[meme.selectedLineIdx]
+    if (!line || !line.isDrag) return
+
+    const pos = getEvPos(ev)
+    const dx = pos.x - line.pos.x
+    const dy = pos.y - line.pos.y
+    moveLine(dx, dy)
+    renderMeme()
+}
+
+function onUp() {
+    const clickedLine = getCurrLine()
+    setLineDrag(clickedLine, false)
+}
+
+/// SAVE & EDIT SAVED MEMES ///
 
 function onSaveMeme() {
     saveMeme()
@@ -132,6 +153,36 @@ function onSaveMeme() {
 
 function onDisplaySavedMemes() {
     renderSavedMemes()
+    showSavedMemes()
+}
+
+function renderSavedMemes() {
+    const memes = getSavedMemes()
+    if (!memes) return
+    const elSavedMemes = document.querySelector('.saved-memes')
+    elSavedMemes.innerHTML = ''
+
+    memes.forEach(meme => {
+        if (!getImgById(meme.selectedImgId)) return
+        const imgSrc = getImgById(meme.selectedImgId).url
+        renderImg(imgSrc)
+        renderLines(meme.lines)
+
+        let dataUrl = gElCanvas.toDataURL()
+        const img = new Image()
+        img.src = dataUrl
+        img.onclick = () => onEditSavedMeme(meme)
+        img.onload = () => elSavedMemes.appendChild(img)
+    })
+}
+
+function onEditSavedMeme(meme) {
+    setSavedMeme(meme)
+    renderMeme()
+    showMemeEditor()
+}
+
+function showSavedMemes() {
     const elFilter = document.querySelector('.filter')
     const elGallery = document.querySelector('.image-gallery')
     const elMemeEditor = document.querySelector('.meme-editor')
@@ -143,30 +194,18 @@ function onDisplaySavedMemes() {
     elSavedMemes.classList.remove('hidden')
 }
 
-function renderSavedMemes() {
-    const memes = getSavedMemes()
-    if (!memes) return
-    const elSavedMemes = document.querySelector('.saved-memes')
-    elSavedMemes.innerHTML = ''
+/// DOWNLOAD MEME ///
 
-    memes.forEach(meme => {
-        const imgSrc = getImgById(meme.selectedImgId).url
-        renderImg(imgSrc)
-        renderLines(meme.lines)
-
-        let dataUrl = gElCanvas.toDataURL()
-        const img = new Image()
-        img.src = dataUrl
-
-        img.onload = () => {
-            elSavedMemes.appendChild(img)
-        }
-    })
+function onDownloadMeme(elLink) {
+    unmarkLine()
+    const memeContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = memeContent
 }
 
-/// Share on Facebook ///
+/// SHARE ON FACEBOOK ///
 
 function onFacebookShare() {
+    unmarkLine()
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
 
     function onSuccess(uploadedImgUrl) {
@@ -194,29 +233,4 @@ function doUploadImg(imgDataUrl, onSuccess) {
     }
     XHR.open('POST', '//ca-upload.com/here/upload.php')
     XHR.send(formData)
-}
-
-/// Dragging Text ///
-
-function onDown(ev) {
-    const clickedLine = isLineClicked(ev)
-    if (!clickedLine) return
-    setLineDrag(clickedLine, true)
-}
-
-function onMove(ev) {
-    const meme = getMeme()
-    const line = meme.lines[meme.selectedLineIdx]
-    if (!line || !line.isDrag) return
-
-    const pos = getEvPos(ev)
-    const dx = pos.x - line.pos.x
-    const dy = pos.y - line.pos.y
-    moveLine(dx, dy)
-    renderMeme()
-}
-
-function onUp() {
-    const clickedLine = getCurrLine()
-    setLineDrag(clickedLine, false)
 }

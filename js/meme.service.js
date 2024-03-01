@@ -1,7 +1,7 @@
 'use strict'
 
 const MEMES_DB = 'memesDb'
-const gSavedMemes = []
+let gSavedMemes = loadFromStorage(MEMES_DB) || []
 
 let gMeme
 
@@ -13,7 +13,7 @@ function addMeme(imgId) {
     gMeme = _createMeme(imgId)
 }
 
-/// Line Update ///
+/// TEXT EDIT ///
 
 function editLineTxt(text) {
     if (!gMeme.lines.length) return
@@ -21,22 +21,46 @@ function editLineTxt(text) {
 }
 
 function setColor(txtColor) {
+    if (!gMeme.lines.length) return
     gMeme.lines[gMeme.selectedLineIdx].color = txtColor
 }
 
 function increaseTxtSize() {
+    if (!gMeme.lines.length) return
     gMeme.lines[gMeme.selectedLineIdx].size += 1
 }
 
 function decreaseTxtSize() {
+    if (!gMeme.lines.length) return
     gMeme.lines[gMeme.selectedLineIdx].size -= 1
 }
+
+function setFontFamily(font) {
+    if (!gMeme.lines.length) return
+    gMeme.lines[gMeme.selectedLineIdx].font = font
+}
+
+function alignText(dir) {
+    if (!gMeme.lines.length) return
+    if (dir === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
+    else if (dir === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 175
+    else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 300
+}
+
+/// ADD & DELETE LINE ///
 
 function addLine(txt) {
     const newLine = _createLine(txt)
     gMeme.lines.push(newLine)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    if (!gMeme.lines.length) gMeme.selectedLineIdx = null
+}
+
+/// SWITCH LINE ///
 
 function switchLine() {
     if (!gMeme.lines.length) return ''
@@ -46,14 +70,20 @@ function switchLine() {
 }
 
 function getSelectedLine() {
-    if (!gMeme || !gMeme.selectedLineIdx) return
+    if (!gMeme) return
     return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function clearLineSelection() {
+    gMeme.selectedLineIdx = null
 }
 
 function saveTxtDimensions(txt, txtWidth, txtHeight) {
     txt.pos.width = txtWidth
     txt.pos.height = txtHeight
 }
+
+/// DRAGGING LINES ///
 
 function isLineClicked(ev) {
     const clickPos = getEvPos(ev)
@@ -94,28 +124,7 @@ function _getLineIdx(clickedLine) {
     return gMeme.lines.findIndex(line => line === clickedLine)
 }
 
-function setFontFamily(font) {
-    gMeme.lines[gMeme.selectedLineIdx].font = font
-}
-
-function alignText(dir) {
-    if (dir === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
-    else if (dir === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 175
-    else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 300
-}
-
-function deleteLine() {
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    if (!gMeme.lines.length) gMeme.selectedLineIdx = null
-}
-
-function generateMeme() {
-    gMeme = {
-        selectedImgId: getRandomInt(1, gImgs.length + 1),
-        selectedLineIdx: 0,
-        lines: [_createLine(makeRandLine())]
-    }
-}
+/// SAVE & EDIT SAVED MEMES ///
 
 function saveMeme() {
     gSavedMemes.push(structuredClone(gMeme))
@@ -124,6 +133,20 @@ function saveMeme() {
 
 function getSavedMemes() {
     return loadFromStorage(MEMES_DB)
+}
+
+function setSavedMeme(meme) {
+    gMeme = meme
+}
+
+/// CREATE MEME ///
+
+function generateRandMeme() {
+    gMeme = {
+        selectedImgId: getRandomInt(1, gImgs.length + 1),
+        selectedLineIdx: 0,
+        lines: [_createLine(makeRandLine())]
+    }
 }
 
 function _createMeme(selectedImgId) {

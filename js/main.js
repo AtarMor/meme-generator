@@ -8,37 +8,37 @@ let gCtx
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    const elMemeEditor = document.querySelector('.meme-editor')
-    const elSavedMemes = document.querySelector('.saved-memes')
-    elMemeEditor.classList.add('hidden')
-    elSavedMemes.classList.add('hidden')
-    addListeners()
 
+    gImgs = _createImgs(18)
+    _addImgKeyWords()
+
+    showGallery()
     renderGallery()
     renderPopularKeywords()
+
+    addListeners()
     resizeCanvas()
-	window.addEventListener('resize', resizeCanvas)
-    // renderMeme()
+    window.addEventListener('resize', resizeCanvas)
 }
 
 function addListeners() {
-	addMouseListeners()
-	addTouchListeners()
+    addMouseListeners()
+    addTouchListeners()
 }
 
 function addMouseListeners() {
-	gElCanvas.addEventListener('mousedown', onDown)
-	gElCanvas.addEventListener('mousemove', onMove)
-	gElCanvas.addEventListener('mouseup', onUp)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
-	gElCanvas.addEventListener('touchstart', onDown)
-	gElCanvas.addEventListener('touchmove', onMove)
-	gElCanvas.addEventListener('touchend', onUp)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
-function goGallery() {
+function showGallery() {
     const elMemeEditor = document.querySelector('.meme-editor')
     const elSavedMemes = document.querySelector('.saved-memes')
     elMemeEditor.classList.add('hidden')
@@ -55,21 +55,21 @@ function toggleMenu() {
 }
 
 function resizeCanvas() {
-	const elContainer = document.querySelector('.canvas-container')
+    const elContainer = document.querySelector('.canvas-container')
 
     if (!elContainer.clientWidth && !elContainer.clientHeight) return
-	gElCanvas.width = elContainer.clientWidth
-	gElCanvas.height = elContainer.clientWidth
+    gElCanvas.width = elContainer.clientWidth
+    gElCanvas.height = elContainer.clientWidth
     renderMeme()
 }
 
 function onGenerateMeme() {
-    generateMeme()
+    generateRandMeme()
     renderMeme()
     const elFilter = document.querySelector('.filter')
     const elGallery = document.querySelector('.image-gallery')
     const elMemeEditor = document.querySelector('.meme-editor')
-    
+
     elFilter.classList.add('hidden')
     elGallery.classList.add('hidden')
     elMemeEditor.classList.remove('hidden')
