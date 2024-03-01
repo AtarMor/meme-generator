@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sprint 2</title>
+    <title>Meme Editor</title>
 
     <link rel="stylesheet" href="styles/styles.css">
 </head>
@@ -43,10 +43,10 @@
 
             <div class="search-by-keywords">Funny Animal Happy</div>
             <button class="more-btn">More</button>
+            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
         </div>
 
         <section class="image-gallery gallery-layout">
-
         </section>
 
         <section class="meme-editor meme-editor-layout">
@@ -102,7 +102,8 @@
         </section>
 
     </main>
-    <aside></aside>
+
+    <div class="load-font" style="font-family: impact">.</div>
     <footer></footer>
 
     <script src="js/util.service.js"></script>

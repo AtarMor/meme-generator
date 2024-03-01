@@ -44,3 +44,7 @@ button {
         border-color 0.3s,
         padding 0.6s;
 }
+
+.load-font {
+    color: var(--clrPrimary1)
+}

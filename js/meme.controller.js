@@ -2,19 +2,20 @@
 
 function renderMeme() {
     const meme = getMeme()
-
-    renderImg(meme)
-    renderLine(meme.lines)
+    const imgSrc = getImgById(meme.selectedImgId).url
+    renderImg(imgSrc)
+    renderLines(meme.lines)
 }
 
-function renderImg(meme) {
+function renderImg(imgSrc) {
     const elImg = new Image()
-    elImg.src = getImgById(meme.selectedImgId).url
+    elImg.src = imgSrc
 
+    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function renderLine(memeLines) {
+function renderLines(memeLines) {
     if (!memeLines || !memeLines.length) return
     memeLines.forEach(line => {
         gCtx.fillStyle = line.color
@@ -149,9 +150,9 @@ function renderSavedMemes() {
     elSavedMemes.innerHTML = ''
 
     memes.forEach(meme => {
-
-        renderImg(meme)
-        renderLine(meme.lines)
+        const imgSrc = getImgById(meme.selectedImgId).url
+        renderImg(imgSrc)
+        renderLines(meme.lines)
 
         let dataUrl = gElCanvas.toDataURL()
         const img = new Image()
@@ -199,8 +200,8 @@ function doUploadImg(imgDataUrl, onSuccess) {
 
 function onDown(ev) {
     const clickedLine = isLineClicked(ev)
-	if (!clickedLine) return
-	setLineDrag(clickedLine, true)
+    if (!clickedLine) return
+    setLineDrag(clickedLine, true)
 }
 
 function onMove(ev) {
@@ -208,14 +209,14 @@ function onMove(ev) {
     const line = meme.lines[meme.selectedLineIdx]
     if (!line || !line.isDrag) return
 
-	const pos = getEvPos(ev)
-	const dx = pos.x - line.pos.x
-	const dy = pos.y - line.pos.y
-	moveLine(dx, dy)
-	renderMeme()
+    const pos = getEvPos(ev)
+    const dx = pos.x - line.pos.x
+    const dy = pos.y - line.pos.y
+    moveLine(dx, dy)
+    renderMeme()
 }
 
 function onUp() {
     const clickedLine = getCurrLine()
-	setLineDrag(clickedLine, false)
+    setLineDrag(clickedLine, false)
 }

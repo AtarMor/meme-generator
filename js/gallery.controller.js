@@ -35,3 +35,25 @@ function onClearFilter() {
     document.querySelector('.search-img').value = ''
     renderGallery()
 }
+
+/// Upload Image ///
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, addToImgs)
+}
+
+function loadImageFromInput(ev, addToImgs) {
+    const reader = new FileReader()
+
+    reader.onload = ev => {
+        let img = new Image()
+        img.src = ev.target.result
+        img.onload = () => addToImgs(img.src)
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+function addToImgs(imgSrc) {
+    addImg(imgSrc)
+    renderGallery()
+}

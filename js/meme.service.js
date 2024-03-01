@@ -48,7 +48,7 @@ function switchLine() {
 }
 
 function getSelectedLine() {
-    if (!gMeme.selectedLineIdx) return
+    if (!gMeme || !gMeme.selectedLineIdx) return
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 

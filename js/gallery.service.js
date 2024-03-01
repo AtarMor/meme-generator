@@ -15,6 +15,12 @@ function getImgById(imgId) {
     return img
 }
 
+function addImg(imgSrc) {
+    const newImg = _createImg(imgSrc)
+    gImgs.unshift(newImg)
+}
+
+
 function _filterImgs() {
     const searchedKeyword = gFilter.toLowerCase()
     return gImgs.filter(img => img.keywords.includes(searchedKeyword));
