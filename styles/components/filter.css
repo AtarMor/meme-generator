@@ -18,7 +18,8 @@
 }
 
 .filter .search-by-keywords {
-    display:flex;
+    display: flex;
+    justify-content: space-evenly;
     background-color: var(--clrPrimary-1);
 }
 
@@ -27,4 +28,24 @@
     display: flex;
     background: var(--clrSecondary);
     color: inherit;
-} 
+}
+
+.filter .search-by-keywords div:first-child {
+    order: 3
+}
+
+.filter .search-by-keywords div:nth-child(2) {
+    order: 0
+}
+
+.filter .search-by-keywords div:nth-child(3) {
+    order: 2
+}
+
+.filter .search-by-keywords div:nth-child(4) {
+    order: 1
+}
+
+.filter .search-by-keywords div:last-child {
+    order: 4
+}

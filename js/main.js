@@ -15,6 +15,7 @@ function onInit() {
     addListeners()
 
     renderGallery()
+    renderPopularKeywords()
     resizeCanvas()
 	window.addEventListener('resize', resizeCanvas)
     // renderMeme()

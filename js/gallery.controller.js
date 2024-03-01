@@ -11,6 +11,17 @@ function renderGallery() {
     elGallery.innerHTML = strHTMLs.join('')
 }
 
+function renderPopularKeywords() {
+    const keywordsMap = getKeywordsMap()
+    const totalSearches = getTotalSearches(5)
+    const keywordsToDisplay = getPopularKeywords(5)
+    const elKeywords = document.querySelector('.search-by-keywords')
+    const strHTMLs = keywordsToDisplay.map(keyword => {
+        return `<div style="font-size:${keywordsMap[keyword]/totalSearches*90}px" onclick="onKeywordClick('${keyword}')">${keyword}</div>`
+    })
+    elKeywords.innerHTML = strHTMLs.join('')
+}
+
 function onImgSelect(imgId) {
     addMeme(+imgId)
     renderMeme()
@@ -23,6 +34,11 @@ function onImgSelect(imgId) {
     elGallery.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
     elMemeEditor.classList.remove('hidden')
+}
+
+function onKeywordClick(keyword) {
+    onSetFilter(keyword)
+    renderPopularKeywords()
 }
 
 function onSetFilter(keyword) {
