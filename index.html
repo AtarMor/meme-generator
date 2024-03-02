@@ -18,7 +18,7 @@
         <nav class="main-nav">
             <ul class="main-nav-list clean-list">
                 <button onclick="showGallery()">Gallery</button>
-                <button onclick="onDisplaySavedMemes()">Memes</button>
+                <button onclick="onDisplaySavedMemes()">Saved</button>
                 <button onclick="onGenerateMeme()">Random</button>
                 <button>About</button>
             </ul>
@@ -27,41 +27,43 @@
     </header>
 
     <main class="main-content">
+        <div class="gallery-display">
+            <div class="filter grid">
+                <input class="search-img fa magnifying-glass" list="img-keywords" name="img-keyword"
+                    placeholder="Search" oninput="onSetFilter(value)" />
+                <datalist id="img-keywords">
+                    <option value="Politic"></option>
+                    <option value="Dog"></option>
+                    <option value="Cat"></option>
+                    <option value="Cute"></option>
+                    <option value="Baby"></option>
+                </datalist>
+                <button class="clear-btn" onclick="onClearFilter()">Clear</button>
 
-        <div class="filter grid">
+                <div class="search-by-keywords">Funny Animal Happy</div>
+                <!-- <button class="more-btn">More</button> -->
+                <label class="upload-img" for="file-upload">Upload<br />image</label>
+                <input type="file" class="file-input btn hidden" id="file-upload" name="image"
+                    onchange="onImgInput(event)" accept="image/*" />
+            </div>
 
-            <input class="search-img" list="img-keywords" name="img-keyword" placeholder="Search"
-                oninput="onSetFilter(value)" />
-            <datalist id="img-keywords">
-                <option value="Politic"></option>
-                <option value="Dog"></option>
-                <option value="Cat"></option>
-                <option value="Cute"></option>
-                <option value="Baby"></option>
-            </datalist>
-            <button class="clear-btn" onclick="onClearFilter()">Clear</button>
-
-            <div class="search-by-keywords">Funny Animal Happy</div>
-            <button class="more-btn">More</button>
-            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" accept="image/*" />
+            <section class="image-gallery gallery-layout">
+            </section>
         </div>
-
-        <section class="image-gallery gallery-layout">
-        </section>
 
         <section class="meme-editor meme-editor-layout">
             <div class="canvas-container">
                 <canvas width="350" height="350" onclick="onCanvasClick(event)"></canvas>
             </div>
-            <div class="edit-options grid justify-center">
+            <div class="edit-options">
 
                 <input class="line-enter" type="text" name="text-line" required minlength="1" maxlength="100" size="10"
                     placeholder="Enter Text" oninput="onDrawText(value)" />
 
                 <div class="btn-container line-edit">
-                    <button onclick="onAddLine()">Add</button>
-                    <button onclick="onDeleteLine()">Delete</button>
-                    <button onclick="onSwitchLine()">Switch</button>
+                    <button onclick="onSwitchLine()" class="fa up-down"></button>
+                    <button onclick="onAddLine()" class="fa plus"></button>
+                    <button onclick="onDeleteLine()" class="fa trash"></button>
                 </div>
 
                 <div class="btn-container text-edit">
@@ -71,28 +73,37 @@
                     <button onclick="onAlignText('center')" class="fa align-center"></button>
                     <button onclick="onAlignText('right')" class="fa align-right"></button>
 
-                    <select name="font-family" onchange="onSetFontFamily(value)">
+                    <select class="font-family" name="font-family" onchange="onSetFontFamily(value)">
                         <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
                         <option value="verdana">Verdana</option>
                         <option value="tahoma">Tahoma</option>
                         <option value="monospace">Monospace</option>
                     </select>
-                    <input type="color" name="txt-color" value="#555455" onchange="onSetTxtColor(value)" />
-                    <button onclick="onSaveMeme()">Save meme</button>
+                    <label class="fa palette" for="txt-color"></label>
+                    <input class="hidden" type="color" id="txt-color" name="txt-color" value="#555455"
+                        onchange="onSetTxtColor(value)" />
+                    <button onclick="onSaveMeme()" class="fa save"></button>
                 </div>
 
                 <div class="emoji-container">
                     <button onclick="onAddLine('❤️')">❤️</button>
                     <button onclick="onAddLine('🤩')">🤩</button>
-                    <button onclick="onAddLine('🎉')">🎉</button>
-                    <button onclick="onAddLine('🔥')">🔥</button>
+                    <button onclick="onAddLine('🦄')">🦄</button>
                     <button onclick="onAddLine('😊')">😊</button>
+                    <button onclick="onAddLine('🔥')">🔥</button>
+                    <button onclick="onAddLine('🎉')">🎉</button>
+                    <button onclick="onAddLine('🇮🇱')">🇮🇱</button>
+                    <button onclick="onAddLine('✨')">✨</button>
+                    <button onclick="onAddLine('😂')">😂</button>
+                    <button onclick="onAddLine('😭')">😭</button>
+                    <button onclick="onAddLine('🚀')">🚀</button>
+                    <button onclick="onAddLine('👑')">👑</button>
                 </div>
 
                 <div class="actions">
-                    <button onclick="onFacebookShare()">Share</button>
-                    <a href="#" class="btn" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download</a>
+                    <button onclick="onFacebookShare()" class="fa share-nodes"> Share</button>
+                    <a href="#" class="fa download" onclick="onDownloadMeme(this)" download="my-meme.jpg"> Download</a>
                 </div>
             </div>
         </section>

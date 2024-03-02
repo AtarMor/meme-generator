@@ -162,7 +162,7 @@ function _createLine(txt='Enter text') {
         txt,
         size: 30,
         font: 'impact',
-        color: 'red',
+        color: 'white',
         pos: {
             x: 175,
             y: 50,

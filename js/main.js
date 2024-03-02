@@ -41,13 +41,14 @@ function addTouchListeners() {
 function showGallery() {
     const elMemeEditor = document.querySelector('.meme-editor')
     const elSavedMemes = document.querySelector('.saved-memes')
+    const elGallery = document.querySelector('.gallery-display')
+    
     elMemeEditor.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
-
-    const elFilter = document.querySelector('.filter')
-    const elGallery = document.querySelector('.image-gallery')
-    elFilter.classList.remove('hidden')
     elGallery.classList.remove('hidden')
+
+    // const elFilter = document.querySelector('.filter')
+    // elFilter.classList.remove('hidden')
 }
 
 function toggleMenu() {
@@ -66,11 +67,5 @@ function resizeCanvas() {
 function onGenerateMeme() {
     generateRandMeme()
     renderMeme()
-    const elFilter = document.querySelector('.filter')
-    const elGallery = document.querySelector('.image-gallery')
-    const elMemeEditor = document.querySelector('.meme-editor')
-
-    elFilter.classList.add('hidden')
-    elGallery.classList.add('hidden')
-    elMemeEditor.classList.remove('hidden')
+    showMemeEditor()
 }

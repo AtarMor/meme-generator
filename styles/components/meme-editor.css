@@ -1,24 +1,27 @@
 .canvas-container {
     width: 350px;
     height: 350px;
-	border-radius: 20px;
+	border-radius: 25px;
 }
 
 canvas {
 	display: block;
+	width: 350px;
+    height: 350px;
 	background-color: var( --clrPrimary);
-	margin:auto;
-	border-radius: 20px;
-	border: 5px solid #23252e;
+	border-radius: 25px;
+	border: 8px solid var(--clrPrimary);
 }
 
 .edit-options {
 	display: grid;
-	grid-template-rows: 1fr 1fr 2fr 1.5fr 1fr;
+	grid-template-rows: repeat(5,auto);
 	gap: 10px;
-	padding: 1em;
+	padding: 0.7em 1em;
 	justify-items: center;
-	align-items: center;
+	background-color: var( --clrPrimary);
+	width: 360px;
+	border-radius: 25px;
 }
 
 .edit-options button {
@@ -27,33 +30,40 @@ canvas {
 
 .line-enter {
 	justify-self: stretch;
-	align-self: stretch;
 	border-radius: 20px;
 	text-align: center;
 	font-size: 1.2rem;
-	padding: 0.5em;
+	padding: 0.3em;
 	border: none;
-}
+	background-color: #eceef2;
+	border-bottom: 4px solid #bbc4d1;
+    border-top: 4px solid white;}
 
 .btn-container.text-edit {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	gap: 10px;
-	background-color: var(--clrSecondary1);
-	padding: 0.5em;
-	border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 40px);
+	column-gap: 25px;
+	row-gap: 10px;
+	width: 100%;
+	background-color: #17a59f;
+	padding: 0.6em 0.8em;
+	border-radius: 10px;
 }
 
-.emoji-container button {
-	background: transparent;
-	font-size: 2rem;
-	padding: 0 0.2em;
+.emoji-container {
+	display: flex;
+	justify-content: flex-start;
+	background-color: white;
+	width: 100%;
+	border-radius: 30px;
+	padding: 0.5em 1em;
+	overflow-x: scroll;
 }
 
 .actions {
+	width: 100%;
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	gap: 10px;
 }

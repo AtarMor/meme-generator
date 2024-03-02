@@ -183,12 +183,10 @@ function onEditSavedMeme(meme) {
 }
 
 function showSavedMemes() {
-    const elFilter = document.querySelector('.filter')
-    const elGallery = document.querySelector('.image-gallery')
+    const elGallery = document.querySelector('.gallery-display')
     const elMemeEditor = document.querySelector('.meme-editor')
     const elSavedMemes = document.querySelector('.saved-memes')
 
-    elFilter.classList.add('hidden')
     elGallery.classList.add('hidden')
     elMemeEditor.classList.add('hidden')
     elSavedMemes.classList.remove('hidden')

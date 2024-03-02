@@ -25,3 +25,38 @@
 .fa.align-right::before {
     content: "\f038";
 }
+
+.fa.plus::before {
+    content: "\2b";
+}
+
+.fa.trash::before {
+    content: "\f1f8";
+}
+
+.fa.up-down::before {
+    content: "\f338";
+}
+
+.fa.save::before {
+    content: "\f0c7";
+}
+
+.fa.palette::before {
+    content: "\f53f";
+}
+
+.fa.share-nodes::before {
+    content: "\f1e0";
+}
+
+.fa.download::before {
+    content: "\f019";
+}
+
+/* .fa.magnifying-glass::before {
+    content: "\f002";
+    color: red;
+    background-color: green;
+} */
+

@@ -17,7 +17,7 @@ function renderPopularKeywords() {
     const keywordsToDisplay = getPopularKeywords(5)
     const elKeywords = document.querySelector('.search-by-keywords')
     const strHTMLs = keywordsToDisplay.map(keyword => {
-        return `<div style="font-size:${keywordsMap[keyword] / totalSearches * 90}px" onclick="onKeywordClick('${keyword}')">${keyword}</div>`
+        return `<div style="font-size:${keywordsMap[keyword] / totalSearches * 100}px" onclick="onKeywordClick('${keyword}')">${keyword}</div>`
     })
     elKeywords.innerHTML = strHTMLs.join('')
 }
@@ -29,12 +29,10 @@ function onImgSelect(imgId) {
 }
 
 function showMemeEditor() {
-    const elFilter = document.querySelector('.filter')
-    const elGallery = document.querySelector('.image-gallery')
+    const elGallery = document.querySelector('.gallery-display')
     const elSavedMemes = document.querySelector('.saved-memes')
     const elMemeEditor = document.querySelector('.meme-editor')
 
-    elFilter.classList.add('hidden')
     elGallery.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
     elMemeEditor.classList.remove('hidden')

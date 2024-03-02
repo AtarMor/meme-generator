@@ -7,13 +7,15 @@
 .filter>* {
     align-items: center;
     border: none;
-    border-radius: 20px;
+    border-radius: 25px;
     padding-inline: 20px;
 }
 
-.filter .search-img {
+.filter .search-img,
+.filter .clear-btn {
     display: flex;
     background-color: var(--clrPrimary);
+    color: var(--clrPrimary-1);
     font-size: 1rem;
 }
 
@@ -23,11 +25,12 @@
     background-color: var(--clrPrimary-1);
 }
 
-.filter .clear-btn,
-.filter .more-btn {
+.upload-img {
     display: flex;
     background: var(--clrSecondary);
     color: inherit;
+    padding-block: 0.5em;
+    text-align: center;
 }
 
 .filter .search-by-keywords div:first-child {

@@ -1,0 +1,108 @@
+.btn-container.line-edit {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.btn-container.line-edit button {
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 0;
+    font-size: 1.2em;
+    gap: 10px;
+    transition: 0.5s;
+}
+
+.btn-container.line-edit button:hover {
+    opacity: 0.6;
+}
+
+.fa.up-down {
+    background-color: #3cb0cd;
+    text-shadow: 0 3px #267488;
+    border-bottom: 4px solid #267488;
+    border-top: 4px solid #47bbd4;
+}
+
+.fa.plus {
+    background-color: #3bc14f;
+    text-shadow: 0 3px #015c33;
+    border-bottom: 4px solid #015c33;
+    border-top: 4px solid #61da77;
+}
+
+.fa.trash {
+    background-color: #da2e36;
+    text-shadow: 0 3px #a21016;
+    border-bottom: 4px solid #a21016;
+    border-top: 4px solid #f06b5a;
+}
+
+.btn-container.text-edit button {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.btn-container.text-edit > * {
+    border-bottom: 4px solid #3e7d79;
+    transition: 0.5s;
+    cursor: pointer;
+
+}
+
+.btn-container.text-edit >*:hover {
+    opacity: 0.8;
+}
+
+.font-family {
+    grid-column: span 3;
+    border-radius: 10px;
+    font-size: 1.3em;
+    border: none;
+}
+
+.fa.palette {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.emoji-container button {
+	background: transparent;
+	font-size: 2rem;
+	padding: 0 0.26em;
+}
+
+.actions > * {
+    padding: 0.4em 1.25em;
+	border-radius: 10px;
+}
+
+.actions .share-nodes {
+    color: white;
+    background-color: #1f7cd3;
+    border-top: 4px solid #54b2e8;
+    border-bottom: 4px solid #155c9c;
+}
+
+.actions .download {
+    color: white;
+    background-color: #8f44bb;
+    border-top: 4px solid #bf83da;
+    border-bottom: 4px solid #632687;
+}
+
