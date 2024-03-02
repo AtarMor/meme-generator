@@ -16,7 +16,7 @@
 }
 
 .btn-container.line-edit button:hover {
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 .fa.up-down {
@@ -51,11 +51,10 @@
     border-bottom: 4px solid #3e7d79;
     transition: 0.5s;
     cursor: pointer;
-
 }
 
 .btn-container.text-edit >*:hover {
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .font-family {
@@ -83,12 +82,22 @@
 	background: transparent;
 	font-size: 2rem;
 	padding: 0 0.26em;
+    transition: 0.5s;
+}
+
+.emoji-container button:hover {
+    opacity: 0.8;
 }
 
 .actions > * {
     padding: 0.4em 1.25em;
 	border-radius: 10px;
     padding-top: 0.6em;
+    transition: 0.5s;
+}
+
+.actions > *:hover {
+    opacity: 0.7;
 }
 
 .actions .facebook {

@@ -20,6 +20,7 @@
     background-color: transparent;
     border: none;
     color: inherit;
+    transition: 0.7s;
 }
 
 .main-header button:hover {
