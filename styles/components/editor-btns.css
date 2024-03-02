@@ -65,6 +65,7 @@
 }
 
 .fa.palette {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +78,13 @@
     padding: 0;
     font-size: 1.2em;
 }
+
+.txt-color-input {
+    position: absolute;
+    translate: 190px 60px;
+    z-index: -1;
+}
+
 
 .emoji-container button {
 	background: transparent;
@@ -117,4 +125,3 @@
     background-color: #8f44bb;
     box-shadow: 0 3px inset #bf83da, 0 4px #632687;
 }
-

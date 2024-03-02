@@ -72,7 +72,6 @@
                     <button onclick="onAlignText('left')" class="fa align-left"></button>
                     <button onclick="onAlignText('center')" class="fa align-center"></button>
                     <button onclick="onAlignText('right')" class="fa align-right"></button>
-
                     <select class="font-family" name="font-family" onchange="onSetFontFamily(value)">
                         <option value="impact">Impact</option>
                         <option value="arial">Arial</option>
@@ -81,7 +80,7 @@
                         <option value="monospace">Monospace</option>
                     </select>
                     <label class="fa palette" for="txt-color"></label>
-                    <input class="hidden" type="color" id="txt-color" name="txt-color" value="#555455"
+                    <input class="txt-color-input" type="color" id="txt-color" name="txt-color" value="#555455"
                         onchange="onSetTxtColor(value)" />
                     <button onclick="onSaveMeme()" class="fa save"></button>
                 </div>
