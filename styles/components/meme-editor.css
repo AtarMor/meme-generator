@@ -68,11 +68,17 @@ canvas {
 	align-items: center;
 }
 
-.saved-msg {
+.saved-msg,
+.share-api-result {
     position: fixed;
     top: 315px;
     right: 20px;
     background-color: rgb(15 14 14 / 90%);
     padding: 10px;
     border-radius: 15px;
+}
+
+.share-api-result {
+	top: unset;
+    bottom: 315px;
 }

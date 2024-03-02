@@ -244,22 +244,20 @@ function doUploadImg(imgDataUrl, onSuccess) {
 
 function webAPIShare() {
     const elShareBtn = document.querySelector(".share-btn")
-    const resultPara = document.querySelector(".share-api-result")
+    const elResult = document.querySelector(".share-api-result")
     
     elShareBtn.addEventListener("click", async () => {
         unmarkLine()
         const blob = await (await fetch(gElCanvas.toDataURL('image/jpeg'))).blob()
         const shareData = {
-            title: "Meme Editor",
-            text: "Your new meme is ready!",
             files: [new File([blob], 'image.jpg', { type: blob.type })]
         }
 
         try {
             await navigator.share(shareData)
-            resultPara.textContent = "MDN shared successfully"
+            elResult.textContent = "Meme shared successfully"
         } catch (err) {
-            resultPara.textContent = `Error: ${err}`
+            elResult.textContent = `Error: ${err}`
         }
     })
 }
