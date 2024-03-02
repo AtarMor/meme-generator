@@ -19,6 +19,7 @@ function onInit() {
     addListeners()
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
+    webAPIShare()
 }
 
 function addListeners() {

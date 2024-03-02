@@ -10,8 +10,17 @@
     src: url("../../fonts/fa/fa-solid-900.ttf");
 }
 
+@font-face {
+    font-family: brands;
+    src: url("../../fonts/fa/fa-brands-400.ttf");
+  }
+
 .fa::before {
     font-family: fa;
+}
+
+.brands::before {
+    font-family: brands;
 }
 
 .fa.align-left::before {
@@ -52,6 +61,10 @@
 
 .fa.download::before {
     content: "\f019";
+}
+
+.brands.facebook::before {
+    content: "\f39e";
 }
 
 /* .fa.magnifying-glass::before {

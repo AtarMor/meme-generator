@@ -20,7 +20,7 @@
                 <button onclick="showGallery()">Gallery</button>
                 <button onclick="onDisplaySavedMemes()">Saved</button>
                 <button onclick="onGenerateMeme()">Random</button>
-                <button>About</button>
+                <!-- <button>About</button> -->
             </ul>
         </nav>
         <button class="toggle-menu-btn" onclick="toggleMenu()" type="button">☰</button>
@@ -42,7 +42,6 @@
                 <button class="clear-btn" onclick="onClearFilter()">Clear</button>
 
                 <div class="search-by-keywords">Funny Animal Happy</div>
-                <!-- <button class="more-btn">More</button> -->
                 <label class="upload-img" for="file-upload">Upload<br />image</label>
                 <input type="file" class="file-input btn hidden" id="file-upload" name="image"
                     onchange="onImgInput(event)" accept="image/*" />
@@ -105,14 +104,14 @@
                 </div>
 
                 <div class="actions">
-                    <button onclick="onFacebookShare()" class="fa share-nodes"> Share</button>
+                    <button onclick="onFacebookShare()" class="brands facebook"></button>
+                    <button class="share-btn fa share-nodes"> Share</button>
                     <a href="#" class="fa download" onclick="onDownloadMeme(this)" download="my-meme.jpg"> Download</a>
                 </div>
             </div>
         </section>
 
-        <button class="test"></button>
-        <div class="result"></div>
+        <div class="share-api-result"></div>
 
         <section class="saved-memes gallery-layout">
 
@@ -121,7 +120,7 @@
     </main>
 
     <div class="load-font" style="font-family: impact">.</div>
-    <footer></footer>
+    <footer class="rights-reserved"> © 2024 Meme Editor - All Rights Reserved</footer>
 
     <script src="js/util.service.js"></script>
     <script src="js/storage.service.js"></script>

@@ -155,7 +155,7 @@ function onSaveMeme() {
 function showMsg() {
     const elSavedMsg = document.querySelector('.saved-msg')
     elSavedMsg.classList.remove('hidden')
-    setTimeout (() => elSavedMsg.classList.add('hidden'), 1500)
+    setTimeout(() => elSavedMsg.classList.add('hidden'), 1500)
 }
 
 function onDisplaySavedMemes() {
@@ -240,21 +240,26 @@ function doUploadImg(imgDataUrl, onSuccess) {
     XHR.send(formData)
 }
 
-const shareData = {
-    title: "Meme Editor",
-    text: "Hi",
-    url: window.location.href
-  };
-  
-  const btn = document.querySelector(".test");
-  const resultPara = document.querySelector(".result");
-  
-  // Share must be triggered by "user activation"
-  btn.addEventListener("click", async () => {
-    try {
-      await navigator.share(shareData);
-      resultPara.textContent = "MDN shared successfully";
-    } catch (err) {
-      resultPara.textContent = `Error: ${err}`;
-    }
-  });
+/// NEW WEB API SHARE ///
+
+function webAPIShare() {
+    const elShareBtn = document.querySelector(".share-btn")
+    const resultPara = document.querySelector(".share-api-result")
+    
+    elShareBtn.addEventListener("click", async () => {
+        unmarkLine()
+        const blob = await (await fetch(gElCanvas.toDataURL('image/jpeg'))).blob()
+        const shareData = {
+            title: "Meme Editor",
+            text: "Your new meme is ready!",
+            files: [new File([blob], 'image.jpg', { type: blob.type })]
+        }
+
+        try {
+            await navigator.share(shareData)
+            resultPara.textContent = "MDN shared successfully"
+        } catch (err) {
+            resultPara.textContent = `Error: ${err}`
+        }
+    })
+}

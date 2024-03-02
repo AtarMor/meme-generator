@@ -91,10 +91,16 @@
     padding-top: 0.6em;
 }
 
-.actions .share-nodes {
+.actions .facebook {
     color: white;
     background-color: #1f7cd3;
     box-shadow: 0 3px inset #54b2e8, 0 4px #155c9c;
+}
+
+.actions .share-nodes {
+    color: white;
+    background-color: #00bc8c;
+    box-shadow: 0 3px inset #60d1ae, 0 4px #008362;
 }
 
 .actions .download {
