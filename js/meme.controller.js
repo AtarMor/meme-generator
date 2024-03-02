@@ -149,6 +149,13 @@ function onUp() {
 
 function onSaveMeme() {
     saveMeme()
+    showMsg()
+}
+
+function showMsg() {
+    const elSavedMsg = document.querySelector('.saved-msg')
+    elSavedMsg.classList.remove('hidden')
+    setTimeout (() => elSavedMsg.classList.add('hidden'), 1500)
 }
 
 function onDisplaySavedMemes() {

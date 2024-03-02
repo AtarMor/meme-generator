@@ -22,22 +22,19 @@
 .fa.up-down {
     background-color: #3cb0cd;
     text-shadow: 0 3px #267488;
-    border-bottom: 4px solid #267488;
-    border-top: 4px solid #47bbd4;
+    box-shadow: 0 3px inset #47bbd4, 0 4px #267488;
 }
 
 .fa.plus {
     background-color: #3bc14f;
     text-shadow: 0 3px #015c33;
-    border-bottom: 4px solid #015c33;
-    border-top: 4px solid #61da77;
+    box-shadow: 0 3px inset #61da77, 0 4px #015c33;
 }
 
 .fa.trash {
     background-color: #da2e36;
     text-shadow: 0 3px #a21016;
-    border-bottom: 4px solid #a21016;
-    border-top: 4px solid #f06b5a;
+    box-shadow: 0 3px inset #f06b5a, 0 4px #a21016;
 }
 
 .btn-container.text-edit button {
@@ -47,6 +44,7 @@
     padding: 0;
     font-size: 1.2em;
     font-weight: bold;
+    background-color: white;
 }
 
 .btn-container.text-edit > * {
@@ -90,19 +88,18 @@
 .actions > * {
     padding: 0.4em 1.25em;
 	border-radius: 10px;
+    padding-top: 0.6em;
 }
 
 .actions .share-nodes {
     color: white;
     background-color: #1f7cd3;
-    border-top: 4px solid #54b2e8;
-    border-bottom: 4px solid #155c9c;
+    box-shadow: 0 3px inset #54b2e8, 0 4px #155c9c;
 }
 
 .actions .download {
     color: white;
     background-color: #8f44bb;
-    border-top: 4px solid #bf83da;
-    border-bottom: 4px solid #632687;
+    box-shadow: 0 3px inset #bf83da, 0 4px #632687;
 }
 

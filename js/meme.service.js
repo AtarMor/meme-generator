@@ -16,32 +16,32 @@ function addMeme(imgId) {
 /// TEXT EDIT ///
 
 function editLineTxt(text) {
-    if (!gMeme.lines.length) return
+    if (gMeme.selectedLineIdx === null) return
     gMeme.lines[gMeme.selectedLineIdx].txt = text
 }
 
 function setColor(txtColor) {
-    if (!gMeme.lines.length) return
+    if (gMeme.selectedLineIdx === null) return
     gMeme.lines[gMeme.selectedLineIdx].color = txtColor
 }
 
 function increaseTxtSize() {
-    if (!gMeme.lines.length) return
+    if (gMeme.selectedLineIdx === null) return
     gMeme.lines[gMeme.selectedLineIdx].size += 1
 }
 
 function decreaseTxtSize() {
-    if (!gMeme.lines.length) return
+    if (gMeme.selectedLineIdx === null) return
     gMeme.lines[gMeme.selectedLineIdx].size -= 1
 }
 
 function setFontFamily(font) {
-    if (!gMeme.lines.length) return
+    if (gMeme.selectedLineIdx === null) return
     gMeme.lines[gMeme.selectedLineIdx].font = font
 }
 
 function alignText(dir) {
-    if (!gMeme.lines.length) return
+    if (gMeme.selectedLineIdx === null) return
     if (dir === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
     else if (dir === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 175
     else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 300

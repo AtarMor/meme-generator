@@ -41,6 +41,7 @@ function showMemeEditor() {
 /// FILTERING ///
 
 function onKeywordClick(keyword) {
+    document.querySelector('.search-img').value = keyword
     onSetFilter(keyword)
     renderPopularKeywords()
 }

@@ -1,25 +1,25 @@
 .canvas-container {
-    width: 350px;
-    height: 350px;
+	width: 350px;
+	height: 350px;
 	border-radius: 25px;
 }
 
 canvas {
 	display: block;
 	width: 350px;
-    height: 350px;
-	background-color: var( --clrPrimary);
+	height: 350px;
+	background-color: var(--clrPrimary);
 	border-radius: 25px;
 	border: 8px solid var(--clrPrimary);
 }
 
 .edit-options {
 	display: grid;
-	grid-template-rows: repeat(5,auto);
+	grid-template-rows: repeat(5, auto);
 	gap: 10px;
 	padding: 0.7em 1em;
 	justify-items: center;
-	background-color: var( --clrPrimary);
+	background-color: var(--clrPrimary);
 	width: 360px;
 	border-radius: 25px;
 }
@@ -36,12 +36,12 @@ canvas {
 	padding: 0.3em;
 	border: none;
 	background-color: #eceef2;
-	border-bottom: 4px solid #bbc4d1;
-    border-top: 4px solid white;}
+	box-shadow: 0 3px inset white, 0 4px #bbc4d1;
+}
 
 .btn-container.text-edit {
-    display: grid;
-    grid-template-columns: repeat(5, 40px);
+	display: grid;
+	grid-template-columns: repeat(5, 40px);
 	column-gap: 25px;
 	row-gap: 10px;
 	width: 100%;
@@ -66,4 +66,13 @@ canvas {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.saved-msg {
+    position: fixed;
+    top: 315px;
+    right: 20px;
+    background-color: rgb(15 14 14 / 90%);
+    padding: 10px;
+    border-radius: 15px;
 }

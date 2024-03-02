@@ -2,7 +2,7 @@
 
 let gImgIdx = 1
 let gImgs
-let gKeywordSearchCountMap = { 'cute': 9, 'cat': 12, 'baby': 5, 'dog': 7, 'politic': 4}
+let gKeywordSearchCountMap = { 'cute': 9, 'cat': 12, 'baby': 5, 'dog': 7, 'political': 4}
 
 function getImgs() {
     if (!gFilter) return gImgs
@@ -72,8 +72,11 @@ function _createImg(url) {
 }
 
 function _addImgKeyWords() {
-    gImgs[0].keywords = ['politic']
+    gImgs[0].keywords = ['political']
     gImgs[1].keywords = ['cute', 'dog']
     gImgs[2].keywords = ['cute', 'dog', 'baby']
     gImgs[3].keywords = ['cute', 'cat']
+    gImgs[4].keywords = ['cute', 'baby']
+    gImgs[5].keywords = ['funny']
+    gImgs[6].keywords = ['funny', 'baby']
 }
