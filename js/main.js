@@ -9,8 +9,8 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    gImgs = _createImgs(18)
-    _addImgKeyWords()
+    // imgs = _createImgs(18)
+    // addImgKeyWords()
 
     showGallery()
     renderGallery()

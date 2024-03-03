@@ -1,9 +1,10 @@
 'use strict'
 
-let gImgIdx = 1
-let gImgs
-
+const IMGS_DB = 'imgsDb'
 const KEYWORDS_DB = 'keywordDb'
+
+let gImgIdx = 1
+const gImgs = loadFromStorage(IMGS_DB) || _createImgs(18)
 
 let gKeywordSearchCountMap = loadFromStorage(KEYWORDS_DB) || { 'cute': 9, 'cat': 12, 'baby': 5, 'dog': 7, 'political': 4}
 
@@ -26,6 +27,7 @@ function getImgById(imgId) {
 function addImg(imgSrc) {
     const newImg = _createImg(imgSrc)
     gImgs.unshift(newImg)
+    saveToStorage(IMGS_DB, gImgs)
 }
 
 /// KEYWORD SEARCH STATISTICS ///
@@ -64,6 +66,7 @@ function _createImgs(count) {
             _createImg(`img/${i + 1}.jpg`)
         )
     }
+    _addImgKeyWords(imgs)
     return imgs
 }
 
@@ -75,12 +78,12 @@ function _createImg(url) {
     }
 }
 
-function _addImgKeyWords() {
-    gImgs[0].keywords = ['political']
-    gImgs[1].keywords = ['cute', 'dog']
-    gImgs[2].keywords = ['cute', 'dog', 'baby']
-    gImgs[3].keywords = ['cute', 'cat']
-    gImgs[4].keywords = ['cute', 'baby']
-    gImgs[5].keywords = ['funny']
-    gImgs[6].keywords = ['funny', 'baby']
+function _addImgKeyWords(imgs) {
+    imgs[0].keywords = ['political']
+    imgs[1].keywords = ['cute', 'dog']
+    imgs[2].keywords = ['cute', 'dog', 'baby']
+    imgs[3].keywords = ['cute', 'cat']
+    imgs[4].keywords = ['cute', 'baby']
+    imgs[5].keywords = ['funny']
+    imgs[6].keywords = ['funny', 'baby']
 }
