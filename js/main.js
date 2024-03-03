@@ -47,9 +47,6 @@ function showGallery() {
     elMemeEditor.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
     elGallery.classList.remove('hidden')
-
-    // const elFilter = document.querySelector('.filter')
-    // elFilter.classList.remove('hidden')
 }
 
 function toggleMenu() {

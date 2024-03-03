@@ -149,7 +149,7 @@ function onMove(ev) {
 }
 
 function onUp() {
-    const clickedLine = getCurrLine()
+    const clickedLine = getSelectedLine()
     setLineDrag(clickedLine, false)
 }
 

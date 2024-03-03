@@ -17,39 +17,45 @@ function addMeme(imgId) {
 /// TEXT EDIT ///
 
 function editLineTxt(text) {
-    if (gMeme.selectedLineIdx === null) return
-    gMeme.lines[gMeme.selectedLineIdx].txt = text
+    const selectedLine = getSelectedLine()
+    if (selectedLine) selectedLine.txt = text
 }
 
 function setColor(txtColor) {
-    if (gMeme.selectedLineIdx === null) return
-    gMeme.lines[gMeme.selectedLineIdx].color = txtColor
+    const selectedLine = getSelectedLine()
+    if (selectedLine) selectedLine.color = txtColor
 }
 
 function getLineColor() {
-    return gMeme.lines[gMeme.selectedLineIdx].color
+    const selectedLine = getSelectedLine()
+    return selectedLine.color
 }
 
 function increaseTxtSize() {
-    if (gMeme.selectedLineIdx === null) return
-    gMeme.lines[gMeme.selectedLineIdx].size += 1
+    const selectedLine = getSelectedLine()
+    if (selectedLine && selectedLine.size < 100) selectedLine.size++
 }
 
 function decreaseTxtSize() {
-    if (gMeme.selectedLineIdx === null) return
-    gMeme.lines[gMeme.selectedLineIdx].size -= 1
+    const selectedLine = getSelectedLine()
+    if (selectedLine && selectedLine.size > 10) selectedLine.size--
 }
 
 function setFontFamily(font) {
-    if (gMeme.selectedLineIdx === null) return
-    gMeme.lines[gMeme.selectedLineIdx].font = font
+    const selectedLine = getSelectedLine()
+    if (selectedLine) selectedLine.font = font
 }
 
 function alignText(dir) {
     if (gMeme.selectedLineIdx === null) return
-    if (dir === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 50
+    if (dir === 'left') gMeme.lines[gMeme.selectedLineIdx].pos.x = 70
     else if (dir === 'center') gMeme.lines[gMeme.selectedLineIdx].pos.x = 175
-    else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = 300
+    else if (dir === 'right') gMeme.lines[gMeme.selectedLineIdx].pos.x = gElCanvas.width - 70
+}
+
+function getSelectedLine() {
+    if (!gMeme || gMeme.selectedLineIdx === null) return
+    return gMeme.lines[gMeme.selectedLineIdx]
 }
 
 /// ADD & DELETE LINE ///
@@ -73,11 +79,6 @@ function switchLine() {
     if (gMeme.selectedLineIdx >= gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx += 1
     return gMeme.lines[gMeme.selectedLineIdx].txt
-}
-
-function getSelectedLine() {
-    if (!gMeme) return
-    return gMeme.lines[gMeme.selectedLineIdx]
 }
 
 function clearLineSelection() {
@@ -116,7 +117,7 @@ function moveLine(dx, dy) {
     gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
 }
 
-function getCurrLine() {
+function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
