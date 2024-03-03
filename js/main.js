@@ -47,6 +47,7 @@ function showGallery() {
     elMemeEditor.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
     elGallery.classList.remove('hidden')
+    document.body.classList.remove('menu-open')
 }
 
 function toggleMenu() {

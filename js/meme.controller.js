@@ -205,6 +205,7 @@ function showSavedMemes() {
     elGallery.classList.add('hidden')
     elMemeEditor.classList.add('hidden')
     elSavedMemes.classList.remove('hidden')
+    document.body.classList.remove('menu-open')
 }
 
 /// DOWNLOAD MEME ///

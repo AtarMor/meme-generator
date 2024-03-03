@@ -36,6 +36,7 @@ function showMemeEditor() {
     elGallery.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
     elMemeEditor.classList.remove('hidden')
+    document.body.classList.remove('menu-open')
 }
 
 /// FILTERING ///
