@@ -1,7 +1,7 @@
 .rights-reserved {
     bottom: 0;
     z-index: 1;
-    background-color: var(--clrPrimary-1);
+    background-color: var(--clrPrimary);
     margin-top: 10px;
     padding: 1em 1em;
     text-align: center;

@@ -1,13 +1,13 @@
 .canvas-container {
 	width: 350px;
-	height: 350px;
+	/* height: 350px; */
 	border-radius: 25px;
 }
 
 canvas {
 	display: block;
 	width: 350px;
-	height: 350px;
+	/* height: 350px; */
 	background-color: var(--clrPrimary);
 	border-radius: 25px;
 	border: 8px solid var(--clrPrimary);
