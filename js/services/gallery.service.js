@@ -2,7 +2,10 @@
 
 let gImgIdx = 1
 let gImgs
-let gKeywordSearchCountMap = { 'cute': 9, 'cat': 12, 'baby': 5, 'dog': 7, 'political': 4}
+
+const KEYWORDS_DB = 'keywordDb'
+
+let gKeywordSearchCountMap = loadFromStorage(KEYWORDS_DB) || { 'cute': 9, 'cat': 12, 'baby': 5, 'dog': 7, 'political': 4}
 
 function getImgs() {
     if (!gFilter) return gImgs
@@ -33,6 +36,7 @@ function updateKeywordCount(searchedKeyword) {
         gKeywordSearchCountMap[searchedKeyword]++
     }
     else gKeywordSearchCountMap[searchedKeyword] = 1
+    saveToStorage(KEYWORDS_DB, gKeywordSearchCountMap)
 }
 
 function getPopularKeywords(num) {
