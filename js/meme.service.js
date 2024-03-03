@@ -4,6 +4,7 @@ const MEMES_DB = 'memesDb'
 let gSavedMemes = loadFromStorage(MEMES_DB) || []
 
 let gMeme
+let gLinePosY = 0
 
 function getMeme() {
     return gMeme
@@ -26,7 +27,7 @@ function setColor(txtColor) {
 }
 
 function getLineColor() {
-    return gMeme.lines[gMeme.selectedLineIdx].color 
+    return gMeme.lines[gMeme.selectedLineIdx].color
 }
 
 function increaseTxtSize() {
@@ -62,6 +63,7 @@ function addLine(txt) {
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     if (!gMeme.lines.length) gMeme.selectedLineIdx = null
+    if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
 }
 
 /// SWITCH LINE ///
@@ -104,14 +106,14 @@ function isLineClicked(ev) {
 }
 
 function setLineDrag(clickedLine, isDrag) {
-    if(!clickedLine) return
+    if (!clickedLine) return
     const lineIdx = _getLineIdx(clickedLine)
-	gMeme.lines[lineIdx].isDrag = isDrag
+    gMeme.lines[lineIdx].isDrag = isDrag
 }
 
 function moveLine(dx, dy) {
-	gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
-	gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
 }
 
 function getCurrLine() {
@@ -119,6 +121,7 @@ function getCurrLine() {
 }
 
 function updateSelectedLineIdx(clickedLine) {
+    if (!clickedLine) return
     const lineIdx = _getLineIdx(clickedLine)
     gMeme.selectedLineIdx = lineIdx
     return gMeme.lines[gMeme.selectedLineIdx].txt
@@ -161,7 +164,9 @@ function _createMeme(selectedImgId) {
     }
 }
 
-function _createLine(txt='Enter text') {
+function _createLine(txt = 'Enter text') {
+    gLinePosY += 50
+    if (gLinePosY > 300) gLinePosY = 50
     return {
         txt,
         size: 30,
@@ -169,7 +174,7 @@ function _createLine(txt='Enter text') {
         color: 'white',
         pos: {
             x: 175,
-            y: 50,
+            y: gLinePosY,
             width: 0,
             height: 0
         },
