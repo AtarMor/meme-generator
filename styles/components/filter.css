@@ -17,7 +17,7 @@
     background-color: var(--clrPrimary);
     color: var(--clrPrimary-1);
     font-size: 1rem;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .filter .search-by-keywords {
@@ -26,9 +26,9 @@
     background-color: var(--clrPrimary-1);
 }
 
-.filter .search-by-keywords > * {
+.filter .search-by-keywords>* {
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .upload-img {
@@ -38,7 +38,7 @@
     padding-block: 0.5em;
     text-align: center;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .filter .search-by-keywords div:first-child {
@@ -64,6 +64,12 @@
 .filter .search-img:hover,
 .filter .clear-btn:hover,
 .upload-img:hover,
-.filter .search-by-keywords > *:hover {
+.filter .search-by-keywords>*:hover {
     opacity: 0.7;
+}
+
+.filter .clear-btn:active,
+.upload-img:active,
+.filter .search-by-keywords>*:active {
+    scale: 0.92;
 }

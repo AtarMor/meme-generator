@@ -22,10 +22,10 @@
     background-color: transparent;
     border: none;
     color: inherit;
-    transition: 0.7s;
+    transition: 0.3s;
 }
 
 .main-header button:hover {
     background-color: white;
-    color: var(--clrSecondary1)
+    color: var(--clrSecondary1);
 }

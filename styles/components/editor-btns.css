@@ -12,11 +12,7 @@
     padding: 0;
     font-size: 1.2em;
     gap: 10px;
-    transition: 0.5s;
-}
-
-.btn-container.line-edit button:hover {
-    opacity: 0.7;
+    transition: 0.3s;
 }
 
 .fa.up-down {
@@ -47,14 +43,10 @@
     background-color: white;
 }
 
-.btn-container.text-edit > * {
+.btn-container.text-edit>* {
     border-bottom: 4px solid #3e7d79;
-    transition: 0.5s;
+    transition: 0.3s;
     cursor: pointer;
-}
-
-.btn-container.text-edit >*:hover {
-    opacity: 0.7;
 }
 
 .font-family {
@@ -85,27 +77,18 @@
     z-index: -1;
 }
 
-
 .emoji-container button {
-	background: transparent;
-	font-size: 2rem;
-	padding: 0 0.26em;
-    transition: 0.5s;
+    background: transparent;
+    font-size: 2rem;
+    padding: 0 0.26em;
+    transition: 0.3s;
 }
 
-.emoji-container button:hover {
-    opacity: 0.8;
-}
-
-.actions > * {
+.actions>* {
     padding: 0.4em 1.25em;
-	border-radius: 10px;
+    border-radius: 10px;
     padding-top: 0.6em;
-    transition: 0.5s;
-}
-
-.actions > *:hover {
-    opacity: 0.7;
+    transition: 0.3s;
 }
 
 .actions .facebook {
@@ -124,4 +107,22 @@
     color: white;
     background-color: #8f44bb;
     box-shadow: 0 3px inset #bf83da, 0 4px #632687;
+}
+
+.btn-container.line-edit button:hover,
+.btn-container.text-edit>*:not(.font-family):hover,
+.emoji-container button:hover,
+.actions>*:hover {
+    scale: 1.06;
+}
+
+.font-family:hover {
+    scale: 1.03;
+}
+
+.btn-container.line-edit button:active,
+.btn-container.text-edit>*:active,
+.emoji-container button:active,
+.actions>*:active {
+    scale: 0.9;
 }

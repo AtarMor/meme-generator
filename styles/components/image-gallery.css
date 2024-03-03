@@ -1,4 +1,9 @@
 .image-gallery img {
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.3s;
+}
+
+.image-gallery img:active {
+    scale: 0.95;
 }
