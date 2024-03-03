@@ -25,6 +25,10 @@ function setColor(txtColor) {
     gMeme.lines[gMeme.selectedLineIdx].color = txtColor
 }
 
+function getLineColor() {
+    return gMeme.lines[gMeme.selectedLineIdx].color 
+}
+
 function increaseTxtSize() {
     if (gMeme.selectedLineIdx === null) return
     gMeme.lines[gMeme.selectedLineIdx].size += 1

@@ -45,6 +45,8 @@ function onDrawText(text) {
 function onSetTxtColor(txtColor) {
     setColor(txtColor)
     renderMeme()
+    const elColorPalette = document.querySelector('.palette')
+    elColorPalette.style.color = txtColor
 }
 
 function onIncreaseTxtSize() {
@@ -75,6 +77,7 @@ function onAddLine(txt) {
 
     const elLineEnter = document.querySelector('.line-enter')
     elLineEnter.value = ''
+    document.querySelector('.palette').style.color = 'black'
 }
 
 function onDeleteLine() {
@@ -86,8 +89,12 @@ function onDeleteLine() {
 
 function onSwitchLine() {
     const currLineText = switchLine()
+    let currLineColor = getLineColor()
+    if (currLineColor === 'white') currLineColor = 'black'
+    console.log('currLineColor:', currLineColor)
     renderMeme()
     document.querySelector('.line-enter').value = currLineText
+    document.querySelector('.palette').style.color = currLineColor
 }
 
 /// MARK SELECTED LINES ///
@@ -114,12 +121,14 @@ function unmarkLine() {
 
 function onCanvasClick(ev) {
     const clickedLine = isLineClicked(ev)
-    if (!clickedLine) return unmarkLine()
+    // if (!clickedLine) return unmarkLine()
     const currLineText = updateSelectedLineIdx(clickedLine)
     renderMeme()
 
-    const elLineEnter = document.querySelector('.line-enter')
-    elLineEnter.value = currLineText
+    document.querySelector('.line-enter').value = currLineText
+    let currLineColor = getLineColor()
+    if (currLineColor === 'white') currLineColor = 'black'
+    document.querySelector('.palette').style.color = currLineColor
 }
 
 function onDown(ev) {
