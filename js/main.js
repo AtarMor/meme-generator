@@ -9,9 +9,6 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    // imgs = _createImgs(18)
-    // addImgKeyWords()
-
     showGallery()
     renderGallery()
     renderPopularKeywords()
@@ -39,14 +36,38 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 
+/// SHOW DIFFERENT SECTIONS ///
+
 function showGallery() {
     const elMemeEditor = document.querySelector('.meme-editor')
     const elSavedMemes = document.querySelector('.saved-memes')
     const elGallery = document.querySelector('.gallery-display')
-    
+
     elMemeEditor.classList.add('hidden')
     elSavedMemes.classList.add('hidden')
     elGallery.classList.remove('hidden')
+    document.body.classList.remove('menu-open')
+}
+
+function showMemeEditor() {
+    const elGallery = document.querySelector('.gallery-display')
+    const elSavedMemes = document.querySelector('.saved-memes')
+    const elMemeEditor = document.querySelector('.meme-editor')
+
+    elGallery.classList.add('hidden')
+    elSavedMemes.classList.add('hidden')
+    elMemeEditor.classList.remove('hidden')
+    document.body.classList.remove('menu-open')
+}
+
+function showSavedMemes() {
+    const elGallery = document.querySelector('.gallery-display')
+    const elMemeEditor = document.querySelector('.meme-editor')
+    const elSavedMemes = document.querySelector('.saved-memes')
+
+    elGallery.classList.add('hidden')
+    elMemeEditor.classList.add('hidden')
+    elSavedMemes.classList.remove('hidden')
     document.body.classList.remove('menu-open')
 }
 

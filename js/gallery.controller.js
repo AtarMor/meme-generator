@@ -28,17 +28,6 @@ function onImgSelect(imgId) {
     showMemeEditor()
 }
 
-function showMemeEditor() {
-    const elGallery = document.querySelector('.gallery-display')
-    const elSavedMemes = document.querySelector('.saved-memes')
-    const elMemeEditor = document.querySelector('.meme-editor')
-
-    elGallery.classList.add('hidden')
-    elSavedMemes.classList.add('hidden')
-    elMemeEditor.classList.remove('hidden')
-    document.body.classList.remove('menu-open')
-}
-
 /// FILTERING ///
 
 function onKeywordClick(keyword) {

@@ -197,17 +197,6 @@ function onEditSavedMeme(meme) {
     showMemeEditor()
 }
 
-function showSavedMemes() {
-    const elGallery = document.querySelector('.gallery-display')
-    const elMemeEditor = document.querySelector('.meme-editor')
-    const elSavedMemes = document.querySelector('.saved-memes')
-
-    elGallery.classList.add('hidden')
-    elMemeEditor.classList.add('hidden')
-    elSavedMemes.classList.remove('hidden')
-    document.body.classList.remove('menu-open')
-}
-
 /// DOWNLOAD MEME ///
 
 function onDownloadMeme(elLink) {

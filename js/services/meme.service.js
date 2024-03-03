@@ -150,6 +150,7 @@ function setSavedMeme(meme) {
 /// CREATE MEME ///
 
 function generateRandMeme() {
+    gLinePosY = 0
     gMeme = {
         selectedImgId: getRandomInt(1, gImgs.length + 1),
         selectedLineIdx: 0,
@@ -158,6 +159,7 @@ function generateRandMeme() {
 }
 
 function _createMeme(selectedImgId) {
+    gLinePosY = 0
     return {
         selectedImgId,
         selectedLineIdx: 0,
@@ -167,7 +169,7 @@ function _createMeme(selectedImgId) {
 
 function _createLine(txt = 'Enter text') {
     gLinePosY += 50
-    if (gLinePosY > 300) gLinePosY = 50
+    if (gLinePosY > gElCanvas.height-20) gLinePosY = 50
     return {
         txt,
         size: 30,

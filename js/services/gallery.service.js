@@ -2,8 +2,9 @@
 
 const IMGS_DB = 'imgsDb'
 const KEYWORDS_DB = 'keywordDb'
+const IMG_IDX_DB = 'imgIdxDb'
 
-let gImgIdx = 1
+let gImgIdx = loadFromStorage(IMG_IDX_DB) || 1
 const gImgs = loadFromStorage(IMGS_DB) || _createImgs(18)
 
 let gKeywordSearchCountMap = loadFromStorage(KEYWORDS_DB) || { 'cute': 9, 'cat': 12, 'baby': 5, 'dog': 7, 'political': 4}
@@ -28,6 +29,7 @@ function addImg(imgSrc) {
     const newImg = _createImg(imgSrc)
     gImgs.unshift(newImg)
     saveToStorage(IMGS_DB, gImgs)
+    saveToStorage(IMG_IDX_DB, gImgIdx)
 }
 
 /// KEYWORD SEARCH STATISTICS ///
